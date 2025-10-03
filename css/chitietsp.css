@@ -10,7 +10,7 @@
 .product-container{
     display: flex;
     flex-wrap: wrap;
-    gap: 80px;
+    gap: 200px;
     justify-content: center;
     width: 100%;
 }
@@ -23,12 +23,11 @@
   width: 100%;
   height: auto;
 }
-
+    
 
 /* Thông tin sản phẩm */
 .info-position {
     flex: 2;
-    width: 500px;
 }
 h2{
     text-align: center;
@@ -82,7 +81,7 @@ td, th{
 }
 .button {
     flex: 1;
-    min-width: 150px;
+    width: 150px;
     height: 76px;
     background-color: red;
     border-radius: 10px;
