@@ -1,0 +1,143 @@
+/* Tên sản phẩm */
+.name{
+    font-size: 50px;
+    font-weight: bold;
+    margin: 50px 20px 0;
+    color: black;
+}
+
+/* Ảnh và thông tin cơ bản */
+.product-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 200px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Ảnh sản phẩm */
+.img-border{
+    width: 450px;
+}
+.img {
+  width: 100%;
+  height: auto;
+}
+    
+
+/* Thông tin sản phẩm */
+.info-position {
+    flex: 2;
+}
+h2{
+    text-align: center;
+}
+.h2{
+    margin-bottom: 20px;
+}
+
+/* Bảng thông tin */
+table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #caced1;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+td, th{
+    border: 0.3px solid #caced1;
+    text-align: left;
+    padding: 8px;
+    background-color: #e7eaec;
+}
+
+/* Giá sản phẩm */
+.price{
+    margin-top: 30px;
+    background-color: #e7eaec;
+    border: 0.3px solid #caced1;
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.text1{
+    font-size: 28px;
+}
+.text2{
+    font-size: 32px;
+    margin-top: 8px;
+    text-align: center;
+    color: red;
+}
+
+    /* Nút mua hàng */
+.display-button {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+.button {
+    flex: 1;
+    width: 150px;
+    height: 76px;
+    background-color: red;
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+}
+.button:hover {
+    background-color: #c70000;
+    transform: scale(1.05);
+}
+.text-button {
+    font-size: 24px;
+    color: #e7eaec;
+    text-align: center;
+}
+
+/* Banner */
+.banner {
+    width: 100%;
+    margin-top: 60px; 
+}
+.banner-img {
+    width: 100%;
+    display: block;
+}
+
+
+/* @media (max-width: 768px) {
+  .name {
+    font-size: 36px;
+    margin: 30px 10px 0;
+  }
+
+  .product-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-border,
+  .info-position,
+  .price,
+  .display-button {
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
+  }
+
+  .text1,
+  .text2 {
+    font-size: 24px;
+  }
+
+  .text-button {
+    font-size: 20px;
+  }
+} */
