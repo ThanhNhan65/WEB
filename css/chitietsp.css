@@ -104,7 +104,6 @@ td, th{
 /* Banner */
 .banner {
     width: 100%;
-    clear: both;
     margin-top: 60px; 
 }
 .banner-img {
