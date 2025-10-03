@@ -85,6 +85,7 @@ Chú ý:
     Cách chia và đặt tên tệp phải đúng quy tắc và hợp lý
 
 
-ĐIỀU QUAN TRỌNG: ĐÂY LÀ LÀM VIỆC NHÓM KHÔNG PhẢI CÁ NHÂN, VUI LÒNG TÍCH CỰC ĐÓNG GÓP Ý KIẾN ĐỂ HOÀN THIỆN TỐT ĐỒ ÁN.
+ĐIỀU QUAN TRỌNG: ĐÂY LÀ LÀM VIỆC NHÓM KHÔNG PHẢI CÁ NHÂN, VUI LÒNG TÍCH CỰC ĐÓNG GÓP Ý KIẾN ĐỂ HOÀN THIỆN TỐT ĐỒ ÁN.
+
 
 
