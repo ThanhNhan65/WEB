@@ -2,7 +2,7 @@
 .name{
     font-size: 50px;
     font-weight: bold;
-    margin: 50px 20px 0;
+    margin: 100px 20px 0;
     color: black;
 }
 
@@ -141,3 +141,18 @@ td, th{
     font-size: 20px;
   }
 } */
+
+/* Hiệu ứng */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
