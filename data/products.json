@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "name": "GM-S110PG-1A",
+    "brand": "g-shock",
+    "price": 329,
+    "old_price": 499,
+    "image": "image/gshock_gm-s110pg-1a.png"
+  },
+  {
+    "id": 2,
+    "name": "DW-5600E-1V",
+    "brand": "g-shock",
+    "price": 99,
+    "old_price": 120,
+    "image": "image/gshock_dw-5600e-1v.png"
+  },
+  {
+    "id": 3,
+    "name": "MTP-V002D-7B3",
+    "brand": "casio",
+    "price": 45,
+    "old_price": 65,
+    "image": "image/casio_mtp-v002d-7b3.png"
+  },
+  {
+    "id": 4,
+    "name": "ECB-900DB-1A",
+    "brand": "edifice",
+    "price": 199,
+    "old_price": 250,
+    "image": "image/edifice_ecb-900db-1a.png"
+  },
+  {
+    "id": 5,
+    "name": "OCW-S5000",
+    "brand": "oceanus",
+    "price": 880,
+    "old_price": 990,
+    "image": "image/oceanus_ocw-s5000.png"
+  },
+  {
+    "id": 6,
+    "name": "PRG-600",
+    "brand": "pro-trek",
+    "price": 320,
+    "old_price": 399,
+    "image": "image/protrek_prg-600.png"
+  },
+  {
+    "id": 7,
+    "name": "SHE-4057PG-4A",
+    "brand": "sheen",
+    "price": 160,
+    "old_price": 210,
+    "image": "image/sheen_she-4057pg-4a.png"
+  },
+  {
+    "id": 8,
+    "name": "BA-110AH-4A",
+    "brand": "baby-g",
+    "price": 145,
+    "image": "image/BA-110AH-4A.avif"
+  },
+  {
+    "id": 9,
+    "name": "BA110AH-9A",
+    "brand": "baby-g",
+    "price": 145,
+    "image": "image/BA110AH-9A.avif"
+  },
+  {
+    "id": 10,
+    "name": "BGA10-3A",
+    "brand": "baby-g",
+    "price": 99.00,
+    "image": "image/BGA10-3A.avif"
+  },
+  {
+    "id": 11,
+    "name": "BGA10-6A",
+    "brand": "baby-g",
+    "price": 120.00,
+    "image": "image/BGA10-6A.avif"
+  },
+  {
+    "id": 12,
+    "name": "BGD565GC-2",
+    "brand": "baby-g",
+    "price": 120.00,
+    "image": "image/BGD565GC-2.avif"
+  },
+  {
+    "id": 13,
+    "name": "BG169CH-4",
+    "brand": "baby-g",
+    "price": 99.00,
+    "image": "image/BG169CH-4.avif"
+  },
+  {
+    "id": 14,
+    "name": "BG169CH-9",
+    "brand": "baby-g",
+    "price": 99.00,
+    "image": "image/BG169CH-9.avif"
+  }
+]
