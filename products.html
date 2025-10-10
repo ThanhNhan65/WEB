@@ -5,32 +5,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sản phẩm</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/products.css">
 </head>
 
 <body>
     <div class="wrapper">
         <!-- Phần Header -->
-        <div class="header">
-            <h3 class="watch-title">WATCH</h3>
-            <div class="login-register">
-                <a href="#!">Đăng ký</a><a href="#!">Đăng nhập</a>
+        <header class="site-header">
+            <div class="container">
+                <a class="logo" href="index.html">WATCH</a>
+
+                <form class="search" action="products.html" role="search">
+                    <input type="text" name="q" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
+                    <button type="submit" aria-label="Tìm"><span>🔍</span></button>
+                </form>
+
+                <nav class="header-actions">
+                    <a href="#!">Đăng ký</a>
+                    <a href="#!">Đăng nhập</a>
+                    <a class="cart" href="#!" aria-label="Giỏ hàng">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                </nav>
             </div>
-            <div class="search-bar">
-                <div class="search">
-                    <input type="text" placeholder="Tìm kiếm...">
-                </div>
-                <div class="search-icon">
-                    <a href="#!"><i class="fa-solid fa-magnifying-glass"></i></a>
-                </div>
-            </div>
-            <div class="cart-icon">
-                <a href="#!">
-                    <i class="fa-solid fa-cart-shopping" style="color: #fff;"></i>
-                </a>
-            </div>
-        </div>
+        </header>
+
 
         <!-- Phần body -->
         <nav class="brand-tabs" aria-label="Thương hiệu">
@@ -86,28 +85,27 @@
             </section>
         </main>
 
-        <!-- Phần Footer -->
-        <div class="footer">
-            <div class="title">
-                <h3>WATCH</h3>
-            </div>
-
-            <div class="info-contact">
-                <div class="address">
+    </div>
+    <!-- Phần Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <a class="logo" href="index.html">WATCH</a>
+            <div class="cols">
+                <div class="col">
                     <h4>Địa chỉ</h4>
                     <p>Thanh Hóa</p>
                     <p>Cao Bằng</p>
                     <p>120 Yên Lãng</p>
                 </div>
-
-                <div class="contact">
+                <div class="col">
                     <h4>Liên hệ</h4>
                     <p>email: conchocaobangbopc@gmail.com</p>
                     <p>tel: +8499999999</p>
                 </div>
             </div>
+            <div class="copy">© 2025 WATCH. All rights reserved.</div>
         </div>
-    </div>
+    </footer>
     <script src="js/products.js"></script>
 </body>
 
