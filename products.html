@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sản phẩm</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/products.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Phần Header -->
+        <div class="header">
+            <h3 class="watch-title">WATCH</h3>
+            <div class="login-register">
+                <a href="#!">Đăng ký</a><a href="#!">Đăng nhập</a>
+            </div>
+            <div class="search-bar">
+                <div class="search">
+                    <input type="text" placeholder="Tìm kiếm...">
+                </div>
+                <div class="search-icon">
+                    <a href="#!"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+            </div>
+            <div class="cart-icon">
+                <a href="#!">
+                    <i class="fa-solid fa-cart-shopping" style="color: #fff;"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Phần body -->
+        <nav class="brand-tabs" aria-label="Thương hiệu">
+            <a href="products.html" data-brand="" class="brand-link"><span class="sr-only">Tất cả</span></a>
+
+            <a href="products.html?brand=g-shock" data-brand="g-shock" class="brand-link">
+                <img class="brand-logo" src="assets/brands/g-shock.svg" alt="G-SHOCK" />
+                <span class="sr-only">G-SHOCK</span>
+            </a>
+
+            <a href="products.html?brand=baby-g" data-brand="baby-g" class="brand-link">
+                <img class="brand-logo" src="assets/brands/baby-g.svg" alt="BABY-G" />
+                <span class="sr-only">BABY-G</span>
+            </a>
+
+            <a href="products.html?brand=pro-trek" data-brand="pro-trek" class="brand-link">
+                <img class="brand-logo" src="assets/brands/pro-trek.svg" alt="PRO TREK" />
+                <span class="sr-only">PRO TREK</span>
+            </a>
+
+            <a href="products.html?brand=edifice" data-brand="edifice" class="brand-link">
+                <img class="brand-logo" src="assets/brands/edifice.svg" alt="EDIFICE" />
+                <span class="sr-only">EDIFICE</span>
+            </a>
+
+            <a href="products.html?brand=sheen" data-brand="sheen" class="brand-link">
+                <img class="brand-logo" src="assets/brands/sheen.svg" alt="Sheen" />
+                <span class="sr-only">Sheen</span>
+            </a>
+
+            <a href="products.html?brand=casio" data-brand="casio" class="brand-link"><span>CASIO</span></a>
+            <a href="products.html?brand=oceanus" data-brand="oceanus" class="brand-link"><span>OCEANUS</span></a>
+        </nav>
+
+
+        <main class="page catalog">
+
+            <aside class="filters">
+                <h3>Sắp xếp</h3>
+                <label class="radio"><input type="radio" name="sort" value="newest" checked> Mới nhất</label>
+                <label class="radio"><input type="radio" name="sort" value="price_asc"> Giá tăng dần</label>
+                <label class="radio"><input type="radio" name="sort" value="price_desc"> Giá giảm dần</label>
+                <label class="radio"><input type="radio" name="sort" value="name_asc"> Tên A → Z</label>
+            </aside>
+
+            <section class="results">
+                <div class="results-header">
+                    <h1 id="page-title">Tất cả</h1>
+                    <div id="count" class="muted">0 sản phẩm</div>
+                </div>
+                <div id="grid" class="grid"></div>
+                <div id="empty" class="empty" hidden>Không có sản phẩm phù hợp.</div>
+            </section>
+        </main>
+
+        <!-- Phần Footer -->
+        <div class="footer">
+            <div class="title">
+                <h3>WATCH</h3>
+            </div>
+
+            <div class="info-contact">
+                <div class="address">
+                    <h4>Địa chỉ</h4>
+                    <p>Thanh Hóa</p>
+                    <p>Cao Bằng</p>
+                    <p>120 Yên Lãng</p>
+                </div>
+
+                <div class="contact">
+                    <h4>Liên hệ</h4>
+                    <p>email: conchocaobangbopc@gmail.com</p>
+                    <p>tel: +8499999999</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/products.js"></script>
+</body>
+
+</html>
