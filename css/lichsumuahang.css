@@ -1,0 +1,115 @@
+/* ==== RESET CƠ BẢN ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f5f5f5;
+  color: #333;
+}
+
+/* ==== MENU ==== */
+.navigation {
+  background: #222;
+  padding: 12px 0;
+  text-align: center;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.navigation a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navigation a:hover {
+  color: #ffd700;
+}
+
+/* ==== CONTAINER ==== */
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+/* ===== Lịch sử mua hàng - CSS mới ===== */
+
+.order-history {
+  background-color: #f8f9fa;
+  padding: 80px 80px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.order-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: inline-block;
+  text-align: left;
+}
+
+.order-box h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-table th,
+.order-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-table th {
+  background-color: #222;
+  color: #fff;
+  text-align: left;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-weight: 500;
+  color: #fff;
+}
+.status.paid {
+  background-color: #28a745;
+}
+.status.pending {
+  background-color: #ffc107;
+  color: #000;
+}
+.status.cancel {
+  background-color: #dc3545;
+}
