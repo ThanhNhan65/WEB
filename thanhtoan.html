@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý bán đồng hồ</title>
+  
+  <link rel="stylesheet" href="css/headerfooter.css">
+  <link rel="stylesheet" href="css/thanhtoan.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Sansita:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Header -->
+        <div class="header">
+            <h3 class="watch-title">WATCH</h3>
+            <div class="right-header">
+                <div class="login-register">
+                    <a href="#!">Đăng ký</a><a href="#!">Đăng nhập</a>
+                </div>
+                <div class="search-cart-group">
+                    <div class="search-bar">
+                        <div class="search">
+                            <input type="text" placeholder="Tìm kiếm...">
+                        </div>  
+                        <div class="search-icon">
+                            <a href="#!"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        </div>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="#!">
+                            <i class="fa-solid fa-cart-shopping" style="color: #fff;"></i>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Body -->
+        <main class="body">
+            <!--Menu-->
+            <div class="navigation">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="#!">Thương hiệu</a></li>
+                    <li><a href="#!">Sản phẩm</a></li>
+                </ul>
+            </div>
+
+            <section id="checkout" class="checkout container">
+                <h2 class="section-title">Thanh toán</h2>
+
+                <form class="checkout-form" action="/order/confirm" method="POST" novalidate>
+                    <!-- Thông tin giao hàng (chỉ radio, input đặt trước label) -->
+                    <fieldset class="checkout-section shipping">
+                        <legend>Thông tin giao hàng</legend>
+
+                        <div class="form-row radio-group">
+                            <label class="radio-line"><input type="radio" name="address_option" value="default" checked> <span>Dùng địa chỉ mặc định</span></label>
+                            <label class="radio-line"><input type="radio" name="address_option" value="new"> <span>Nhập địa chỉ mới</span></label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Phương thức thanh toán -->
+                    <fieldset class="checkout-section payment">
+                        <legend>Phương thức thanh toán</legend>
+
+                        <div class="payment-wrapper">
+                            <select id="payment_method" name="payment_method" class="payment-select">
+                                <option value="card" selected>Thẻ tín dụng/ghi nợ</option>
+                                <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                                <option value="wallet">Ví điện tử (Momo / ZaloPay / Apple Pay)</option>
+                                <option value="bank">Chuyển khoản ngân hàng</option>
+                            </select>
+
+                            <!-- Card panel: nền tối hơn, bọc các input -->
+                            <div class="card-panel" aria-hidden="false">
+                                <div class="card-form">
+                                    <div class="form-row">
+                                        <label for="card-number">Số thẻ</label>
+                                        <input id="card-number" name="card_number" type="text" placeholder="1234 5678 9012 3456" autocomplete="cc-number">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label for="card-name">Tên chủ thẻ</label>
+                                        <input id="card-name" name="card_name" type="text" placeholder="NGUYEN VAN A" autocomplete="cc-name">
+                                    </div>
+
+                                    <div class="form-row form-row-inline">
+                                        <div>
+                                            <label for="card-exp">Ngày hết hạn (MM/YY)</label>
+                                            <input id="card-exp" name="card_exp" type="text" placeholder="12/27" autocomplete="cc-exp">
+                                        </div>
+                                        <div>
+                                            <label for="card-cvc">CVV</label>
+                                            <input id="card-cvc" name="card_cvc" type="text" placeholder="123" autocomplete="cc-csc">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                    <!-- Tóm tắt đơn hàng -->
+                    <aside class="order-summary">
+                        <h3>Tóm tắt đơn hàng</h3>
+
+                        <ul class="order-items">
+                            <li>Áo thun (x2): <span class="price-item">300,000₫</span></li>
+                            <li>Giày thể thao (x1): <span class="price-item">800,000₫</span></li>
+                        </ul>
+
+                        <!-- thin divider dưới danh sách sản phẩm -->
+                        <div class="order-divider" aria-hidden="true"></div>
+
+                        <div class="order-total">
+                            <span>Tổng cộng:</span>
+                            <strong>1,100,000₫</strong>
+                        </div>
+                    </aside>
+
+                    <!-- Nút xác nhận -->
+                    <div class="form-row submit-row">
+                        <button type="submit" class="btn btn-success">Xác nhận đặt hàng</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="title">
+                <h3>WATCH</h3>
+            </div>
+        
+            <div class="info-contact">
+                <div class="address">
+                <h4>Địa chỉ</h4>
+                <p>Thanh Hóa</p>
+                <p>Cao Bằng</p>
+                <p>120 Yên Lãng</p>
+                </div>
+
+                <div class="contact">
+                <h4>Liên hệ</h4>    
+                <p>Email: conchocaobangbopc@gmail.com</p>
+                <p>Tel: +84 999 999 999</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
