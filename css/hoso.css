@@ -5,16 +5,16 @@
     margin-bottom: 15px;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-.container{
+.navigation-profile{
     display: flex;
     width: 100%;
     gap: 20px;
 }
 
-.container-menu{
+.left-menu{
     width: 30%;
 }
-.container-content{
+.right-content{
     width: 70%;
 }
 
