@@ -80,7 +80,7 @@ let allProducts = [];
 const productList = document.getElementById('product-list');
 
 // Tải dữ liệu từ JSON
-fetch('/json/products.json')
+fetch('/data/All-Products.json')
   .then(res => res.json())
   .then(data => {
     allProducts = data.products.map(product => {
