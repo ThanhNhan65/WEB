@@ -89,7 +89,15 @@
       "link": "chitietsanpham.html"
     },
     {
-      "name": "MM-S110PG-1A",
+      "name": "LM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "price": 559,
+      "old_price": 1099,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "LM-S110PG-1A",
       "brand": "G-SHOCK",
       "price": 559,
       "old_price": 1099,
