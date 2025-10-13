@@ -17,6 +17,12 @@ body {
     background: #fff;
 }
 
+.brand {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: .6px;
+}
+
 .brand-tabs {
     flex: 0 0 auto;
     position: sticky;
@@ -30,6 +36,17 @@ body {
     border-bottom: 1px solid #e8eaed;
     z-index: 20;
     overflow: auto;
+}
+
+.brand-tabs .brand-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.brand-tabs .brand-logo {
+    display: block;
+    height: 16px;
+    width: auto;
 }
 
 .page {
@@ -250,12 +267,6 @@ body {
 .content {
     padding: 12px;
     font-family: "Montserrat", sans-serif;
-}
-
-.brand {
-    font-size: 12px;
-    color: #666;
-    letter-spacing: .6px;
 }
 
 .name {
