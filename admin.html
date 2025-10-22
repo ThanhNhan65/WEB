@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quan ly ban dong ho</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/pricemanage.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@100;200;300;400&display=swap" rel="stylesheet"></head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h3 class="watch-title">WATCH</h3>
+            </div>
+        </div>
+    
+    <div class="body2" >
+        <div class="left-menu">
+                <button class="container">Quản lý khách hàng</button>
+                <button class="container">Quản lý loại sản phẩm</button>
+                <button class="container">Quản lý danh mục sản phẩm</button>
+                <button class="container"  >Quản lý Nhập sản phẩm</button>
+                <button class="container" onclick="hienthiquanlygiaban()">Quản lý giá bán</button>
+                <button class="container" >Quản lý đơn đặt hàng </button>
+                <button class="container" > Quản lý số lượng tồn của sản phẩm</button>
+        </div>
+
+        <div class="content">
+            
+            <div id="pricing-manager">
+                    <h2>Quản lý giá bán</h2>
+                    <div class="pm-row">
+                        <section class="pm-panel" id="by-category">
+                            <h3>Theo loại (hãy dùng "Brand" làm loại)</h3>  
+                            <table class="category-table">
+                                <thead><tr><th>Loại (Brand)</th><th>% Lợi nhuận (mặc định)</th><th>Hành động</th></tr></thead>
+                                <tbody id="category-tbody"></tbody>
+                            </table>
+                        </section>
+
+                        <section class="pm-panel" id="by-product">
+                            <h3>Theo sản phẩm</h3>
+                            <div class="pm-controls">
+                                <label>Loại: <select id="filter-brand"><option value="">--Tất cả--</option>
+                                                                        <option value="casio">Casio</option>
+                                                                        <option value="citizen">Citizen</option>
+                                </select></label>
+                                <label>Tìm: <input id="search-product" placeholder="Tên sản phẩm..." /></label>
+                                <button onclick="filterByName()">Tìm kiếm</button>
+                            </div>
+                            <div class="product-list-container">
+                                <div class="product-list-header">
+                                    <div class="col name">Tên</div>
+                                    <div class="col cost">Giá vốn</div>
+                                    <div class="col margin">% Lợi nhuận</div>
+                                    <div class="col sell">Giá bán</div>
+                                    <div class="col action">Hành động</div>
+                                </div>
+                                <div id="product-list" class="product-list" aria-live="polite">
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <section class="pm-panel" id="quick-lookup">
+                        <h3>Tra cứu nhanh</h3>
+                        <div class="pm-controls">
+                            <input id="lookup-input" placeholder="Nhập tên hoặc id sản phẩm" />
+                            <button onclick="tracuu()">Tra cứu</button>
+                        </div>
+                        <div id="lookup-result"></div>
+                    </section>
+                </div>
+
+        </div>
+    </div>
+    <script src="js/price.js"></script>
+</body>
+
+</html>
