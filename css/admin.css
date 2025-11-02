@@ -10,12 +10,12 @@ html {
 .header {
     display: flex;
     justify-content: space-between;
-    height: 100px;
+    height: 80px; 
     background-color: #0B0A0A;
     position: fixed;
     top:0;
     width: 100%;
-    z-index: 1000;
+    z-index: 100000000;
 }
 .header .watch-title {
     align-self: center;
@@ -30,12 +30,12 @@ html {
 
 .body2{
     display: flex;
-    margin-top: 100px;
-    min-height: calc(100vh - 100px);
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
 }
 
 .left-menu{
-    flex: 1;
+    flex: 0 0 220px; 
     background-color: #bc4e4e;
     display: flex;
     flex-direction: column;
@@ -52,6 +52,7 @@ html {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    overflow: hidden;
  }
  
  .left-menu .container:hover{
@@ -60,7 +61,13 @@ html {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
  }
 .content{
-    flex : 3;
+    flex: 1; 
     background-color: #691da7;
     display: flex;
+    padding:20px; 
+    color: #fff ;
 }
+
+
+
+
