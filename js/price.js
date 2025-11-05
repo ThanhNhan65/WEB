@@ -1,9 +1,11 @@
 function hienthiquanlygiaban() {
+    hideAllManagers();
     let a = document.getElementById('pricing-manager');
     if (a.style.display === "none" || a.style.display === "")
         a.style.display = "block";
     else
         a.style.display = "none";
+
 }
 
 let brands = [

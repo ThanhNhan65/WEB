@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/headerfooter.css">
-
+    <title>Giỏ hàng</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="cart-icon">
-                        <a href="#!">
+                        <a href="GioHang.html">
                             <i class="fa-solid fa-cart-shopping" style="color: #fff;"></i>
                         </a>
                     </div>
@@ -46,71 +46,22 @@
         <!-- Body -->
         <div class="body">
             <div class="menu">
-                <a href="#!">Trang chủ</a>
-                <a href="#!">Thương hiệu</a>
-                <a href="#!">Sản phẩm</a>
+                <a href="index.html">Trang chủ</a>
+                <a href="products.html">Thương hiệu</a>
+                <a href="tatcasanpham.html">Sản phẩm</a>
             </div>
 
             <h1 class="cart-title">Giỏ hàng</h1>
 
         <!-- Danh sách giỏ hàng -->
-            <div class="cart-list">   
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="2">Sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Thành tiền</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                            <td><img src="" alt=""></td>
-                            <td class="product">G-Shock GM-110-1A</td>
-                            <td class="price" data-price="5000000">5,000,000đ</td>
-                            <td>
-                                <button class="decrease">-</button>
-                                <input type="number" class="quantity" value="1" min="1">
-                                <button class="increase">+</button>
-                            </td>
-                            <td class="subtotal">5,000,000đ</td>
-                            <td><button class="remove">Xóa</button></td>
-                        </tr> 
+            <div class="cart-list"></div>
 
-                        <tr>
-                            <td><img src="" alt=""></td>
-                            <td class="product">Casio MTP-V002D</td>
-                            <td class="price" data-price="2400000">2,400,000đ</td>
-                            <td>
-                                <button class="decrease">-</button>
-                                <input type="number" class="quantity" value="1" min="1">
-                                <button class="increase">+</button>
-                            </td>
-                            <td class="subtotal">2,400,000đ</td>
-                            <td><button class="remove">Xóa</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="cart-footer">
-                    <div class="total-price"><b>Tổng tiền:</b> 7,400,000đ</div>
-                    <div class="cart-button">
-                        <button class="cont-buy">Tiếp tục mua hàng</button>
-                        <button class="checkout">Thanh toán</button>
-                    </div>
-                </div>
-            </div>
-            
-
-        <!-- Giỏ hàng khi đang rỗng -->
-            <!-- <h2 class="cart-empty">Giỏ hàng của bạn đang trống</h2>
-            <button class="cont-buy">Tiếp tục mua hàng</button> -->
+        <!-- Thông báo giỏ hàng trống -->
+            <div class="cart-empty"></div> 
                 
-        </div>
+        </div> 
 
-
+        
         <!-- Footer -->
         <div class="footer">
             <div class="title">
@@ -134,5 +85,7 @@
         </div>
 
     </div>
+
+    <script src="js/cart.js"></script>
 </body>
 </html>

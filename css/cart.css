@@ -1,4 +1,5 @@
 html, body{
+    height: 100%;
     margin: 0;
     padding: 0;
     --main-font:"Montserrat", sans-serif;
@@ -15,15 +16,24 @@ html, body{
     align-items: center;
     position: relative;
 
-    min-height: 600px;
+    padding-bottom: 100px;
     background-color: rgb(230, 230, 230);
+}
+
+a {
+    text-decoration: none;
+    color: white;   
 }
 
 .body .menu {
     display: flex;
     justify-content: center;
     width: 100%;
-    gap: 40px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    gap: 200px;
+    background-color: #d6dadc;
 }
 
 .body .menu a {
@@ -32,7 +42,8 @@ html, body{
     text-align: center;
     color: rgb(24, 24, 24);
     font-family: var(--main-font);
-    font-size: 24px;
+    font-size: 20px;
+    letter-spacing: 1px;
     font-weight: 400;  
     text-decoration: none;
 
@@ -64,7 +75,8 @@ html, body{
 
 .cart-title {
     display: inline-block;
-    margin-top: 28px;
+    margin-top: 32px;
+    margin-bottom: 32px;
 
     color: rgb(60, 60, 60);
     font-family: var(--main-font);
@@ -79,7 +91,7 @@ html, body{
     display: flex;
     text-align: center;
     margin-top: 100px;
-    
+    justify-content: center;
     color: rgb(60, 60, 60);
     font-family: var(--main-font);
     font-size: 36px;
@@ -94,6 +106,8 @@ html, body{
     margin: 0 auto;
     margin-top: 15px;
     border: 1px solid #ccc;
+    flex-direction: column;
+    display: flex;
 }
 
 .cart-list table {
@@ -128,14 +142,30 @@ html, body{
 }
 
 .remove {
+    border: none;
+    background-color: white;
     width: auto;
-    height: 20px;
+    height: 40px;
+    font-size: 16px;
+
+    transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.remove:hover{
+    cursor: pointer;
+    color: red;
+    opacity: 0.8;
+    transform: scale(110%);
+}
+.remove:active{
+    color: rgb(183, 12, 12);
+    transform: scale(99%);
 }
 .cart-footer {
     display: flex;
     flex-direction: column;
     padding: 15px;
-    align-items:self-end;
+    align-items: flex-end;
 }
 
 .total-price {
@@ -176,8 +206,8 @@ html, body{
     transform: scale(99%);
 }
 .cont-buy {
-    display: flex;
-    margin-top: 70px;
+    display: block;
+    margin: 70px auto 0 auto;
     padding: 20px;
     
     color: white;
@@ -188,7 +218,7 @@ html, body{
     background-color: rgb(58, 58, 58);
     border: 2px solid grey;
     border-radius: 2px; 
-
+    
     transition: opacity 0.2s ease;
 }
 

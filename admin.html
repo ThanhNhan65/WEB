@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quan ly ban dong ho</title>
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/css/pricemanage.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/pricemanage.css">
+    <link rel="stylesheet" href="css/receiptmanage.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +28,7 @@
                 <button class="container">Quản lý danh mục sản phẩm</button>
                 <button class="container"  >Quản lý Nhập sản phẩm</button>
                 <button class="container" onclick="hienthiquanlygiaban()">Quản lý giá bán</button>
-                <button class="container" >Quản lý đơn đặt hàng </button>
+                <button class="container" onclick="hienThiQuanLyDonHang()" >Quản lý đơn đặt hàng </button>
                 <button class="container" > Quản lý số lượng tồn của sản phẩm</button>
         </div>
 
@@ -78,9 +79,244 @@
                     </section>
                 </div>
 
+
+
+            <div id="category-manager">
+                <h2>Quản lý danh mục sản phẩm</h2>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h4>Tổng danh mục</h4>
+                        <div class="stat-number" id="total-categories">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Đang hoạt động</h4>
+                        <div class="stat-number" id="active-categories">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Tạm ngưng</h4>
+                        <div class="stat-number" id="inactive-categories">0</div>
+                    </div>
+                </div>
+
+                <div class="category-form-panel">
+                    <h3 id="form-title">Thêm danh mục mới</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cat-name">Tên danh mục *</label>
+                            <input type="text" id="cat-name" placeholder="Ví dụ: Đồng hồ Nam">
+                        </div>
+                        <div class="form-group">
+                            <label for="cat-description">Mô tả</label>
+                            <textarea id="cat-description" placeholder="Mô tả chi tiết về danh mục..."></textarea>
+                        </div>
+                        <div class="form-buttons">
+                            <input type="hidden" id="cat-id">
+                            <button class="btn-primary" onclick="saveCategoryForm()">Lưu</button>
+                            <button class="btn-secondary" onclick="resetCategoryForm()">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-panel">
+                    <div class="filter-controls">
+                        <label>
+                            Trạng thái:
+                            <select id="filter-status">
+                                <option value="">Tất cả</option>
+                                <option value="active">Đang hoạt động</option>
+                                <option value="inactive">Tạm ngưng</option>
+                            </select>
+                        </label>
+                        <label>
+                            Tìm kiếm:
+                            <input type="text" id="search-category" placeholder="Tên hoặc mô tả...">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="category-list-panel">
+                    <div class="category-list-container">
+                        <div class="category-list-header">
+                            <div class="col id">ID</div>
+                            <div class="col name">Tên danh mục</div>
+                            <div class="col description">Mô tả</div>
+                            <div class="col status">Trạng thái</div>
+                            <div class="col action">Hành động</div>
+                        </div>
+                        <div class="category-list" id="category-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="inventory-manager">
+                <h2>Quản lý số lượng tồn kho</h2>
+
+                <div class="inv-stats-container">
+                    <div class="inv-stat-card">
+                        <h4>Tổng sản phẩm</h4>
+                        <div class="stat-number" id="total-products">0</div>
+                    </div>
+                    <div class="inv-stat-card">
+                        <h4>Tổng tồn kho</h4>
+                        <div class="stat-number" id="total-stock">0</div>
+                    </div>
+                    <div class="inv-stat-card warning">
+                        <h4>Sắp hết hàng</h4>
+                        <div class="stat-number" id="low-stock-count">0</div>
+                    </div>
+                </div>
+
+                <div class="inv-filter-panel">
+                    <div class="inv-filter-controls">
+                        <div class="filter-left">
+                            <label>
+                                Thương hiệu:
+                                <select id="filter-brand-inv">
+                                    <option value="">Tất cả</option>
+                                    <option value="casio">Casio</option>
+                                    <option value="citizen">Citizen</option>
+                                </select>
+                            </label>
+                            <label>
+                                Trạng thái tồn:
+                                <select id="filter-stock">
+                                    <option value="">Tất cả</option>
+                                    <option value="low">Sắp hết</option>
+                                    <option value="normal">Bình thường</option>
+                                </select>
+                            </label>
+                            <label>
+                                Tìm kiếm:
+                                <input type="text" id="search-inventory" placeholder="Tên hoặc SKU...">
+                            </label>
+                        </div>
+                        <button class="btn-export" onclick="exportReport()">
+                            📊 Xuất báo cáo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="inv-list-panel">
+                    <div class="inventory-list-container">
+                        <div class="inventory-list-header">
+                            <div class="col name">Sản phẩm</div>
+                            <div class="col brand">Thương hiệu</div>
+                            <div class="col location">Vị trí kho</div>
+                            <div class="col stock">Tồn kho</div>
+                            <div class="col adjust">Điều chỉnh</div>
+                            <div class="col action">Hành động</div>
+                        </div>
+                        <div class="inventory-list" id="inventory-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="history-modal" class="history-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="history-title">Lịch sử giao dịch</h3>
+                        <button class="close-modal" onclick="closeHistoryModal()">&times;</button>
+                    </div>
+                    <div id="history-content">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Menu quản lý đơn đặt hàng -->
+            <div id="receipt-manager">
+                <h2>Quản lý đơn đặt hàng</h2>
+                <div class="rm-container">
+                    <div class="rm-panel">
+                        <div class="top-row">
+                            <h3>Danh sách đơn đặt hàng</h3>
+                            <div class="rm-controls">
+                                <label>Trạng thái: 
+                                    <select id="filter-status" onchange="filterReceipts()">
+                                        <option value="">--Tất cả--</option>
+                                        <option value="Mới đặt">Mới đặt</option>
+                                        <option value="Đang xử lý">Đang xử lý</option>
+                                        <option value="Đã giao">Đã giao</option>
+                                        <option value="Đã hủy">Đã hủy</option>
+                                    </select>
+                                </label>
+                                <label>Lọc:<input id="startdate" placeholder="Nhập ngày bắt đầu"> <input id="enddate" placeholder="Nhập ngày kết thúc"></label>
+                                <button onclick="filterReceipts()">Tìm kiếm</button>
+                            </div>
+                        </div>
+
+                        <table class="rm-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Khách hàng</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="receipt-tbody"></tbody>
+                        </table>
+                    </div>
+
+
+
+                    <div class="rm-panel" id="detailed-receipt">
+                        <div class="top-row">
+                            <h3>Chi tiết đơn hàng</h3>
+                            <div class="rm-controls">
+                                <h3>Chỉnh sửa trạng thái</h3>
+                                <select id="status-select">
+                                    <option value="Đã giao">Đã giao</option>
+                                    <option value="Đã hủy">Đã hủy</option>
+                                    <option value="Đang xử lý">Đang xử lý</option>
+                                    <option value="Mới đặt">Mới đặt</option>   
+                                </select>       
+                                <button id="updatestatus">Cập nhật tình trạng</button> 
+                            </div> 
+                        </div>
+                        <table class="rm-table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="width: 25%">Sản phẩm</th>
+                                    <th>Hãng</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dr-table"></tbody>
+                        </table>
+                        <table class="rm-table" style="margin-top: 20px">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Khách hàng</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dr-customer-table"></tbody>
+                        </table>
+                        <div id="receipt-status"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
         </div>
     </div>
     <script src="/js/price.js"></script>
+    <script src="js/category.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="/js/receipt.js"></script>
 </body>
 
 </html>
