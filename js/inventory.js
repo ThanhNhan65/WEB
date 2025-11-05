@@ -1,4 +1,5 @@
 function hienthiquanlytonkho() {
+    hideAllManagers();
     let a = document.getElementById('inventory-manager');
     if (a.style.display === "none" || a.style.display === "")
         a.style.display = "block";

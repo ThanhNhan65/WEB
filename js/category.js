@@ -1,4 +1,5 @@
 function hienthiquanlydanhmuc() {
+    hideAllManagers();
     let a = document.getElementById('category-manager');
     if (a.style.display === "none" || a.style.display === "")
         a.style.display = "block";
