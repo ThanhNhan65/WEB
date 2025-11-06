@@ -1,0 +1,327 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 200px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 80px; 
+    background-color: #0B0A0A;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 100000000;
+}
+.header .watch-title {
+    align-self: center;
+    display: inline-block;
+    color: #C8BB11;
+    font-family: var(--main-font);
+    font-size: 60px;
+    text-shadow:-3px 3px 1px #857d0e, 
+                -5px 5px #443F0A; 
+    margin-left: 150px;
+}
+
+.body2{
+    display: flex;
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+.left-menu{
+    flex: 0 0 220px; 
+    background-color: #bc4e4e;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+ .left-menu .container{
+    border: 2px solid black;
+    border-radius: 12px;
+    background-color: aqua;
+    height: 50px;
+    width: 80%;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+ }
+ 
+ .left-menu .container:hover{
+    background-color: #00d4ff;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ }
+.content{
+    flex: 1; 
+    background-color: #691da7;
+    display: flex;
+    padding:20px; 
+    color: #fff ;
+}
+.inv-title {
+    margin: 10px 0 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 800;
+}
+.inv-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+    align-items: center;
+}
+.btn {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.btn:hover {
+    transform: scale(1.05);
+}
+.btn.primary {
+    background: #00c2ff;
+    color: #000;
+}
+.btn.warn {
+    background: #ffb703;
+    color: #000;
+}
+.btn.small {
+    padding: 6px 10px;
+    font-size: 14px;
+}
+.btn.ghost {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #fff;
+}
+.tool-inline {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.input-small {
+    width: 70px;
+}
+.text-success {
+    color: #79ff8f;
+    font-weight: bold;
+}
+
+.inv-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.inv-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+.inv-card-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+.inv-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+.table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    margin-top: 6px;
+}
+.inv-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+}
+.inv-table th,
+.inv-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.inv-table th {
+    background: rgba(255,255,255,0.08);
+    text-align: left;
+}
+.inv-table .num {
+    text-align: right;
+}
+.low-row {
+    background: rgba(255,72,72,0.15);
+}
+.pill {
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.pill-warn {
+    background: #ffb703;
+    color: #000;
+}
+.pill-ok {
+    background: #2ecc71;
+    color: #000;
+}
+.inv-result .stat {
+    background: rgba(255,255,255,0.07);
+    padding: 10px;
+    border-radius: 10px;
+    display: grid;
+    gap: 6px;
+}
+.note {
+    background: rgba(255,255,255,0.08);
+    padding: 8px;
+    border-radius: 8px;
+}
+.note.error {
+    background: #ff6b6b;
+    color: #000;
+    font-weight: 700;
+}
+.kpi {
+    background: rgba(255,255,255,0.07);
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+}
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+}
+.kpi-label {
+    font-size: 12px;
+    opacity: 0.8;
+}
+.kpi-value {
+    font-size: 18px;
+    font-weight: 700;
+}
+/* =======================
+   STYLE CHO BẢNG HÀNG TỒN 
+   ======================= */
+.inv-card {
+  background-color: #d6b8ff;
+  border: 2px solid #d6b8ff; 
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(214,184,255,0.3); /* ánh tím nhẹ */
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.inv-card-title {
+  font-weight: 600;
+  font-size: 18px;
+  color: #4a1e85; /* tím trầm nhẹ */
+  margin-bottom: 10px;
+}
+
+/* Bảng chính */
+.inv-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  color: #222;
+  border: 2px solid #d6b8ff; /* khung tím nhạt */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.inv-table th {
+  background-color: #f6f0ff; /* header tím phấn nhẹ */
+  color: #3c1f6e;
+  text-align: left;
+  padding: 10px;
+  border-bottom: 2px solid #e3d3ff; /* đường ngăn tím nhạt */
+}
+
+.inv-table td {
+  padding: 10px;
+  border-bottom: 1px solid #f0e8ff; /* gạch ngang nhạt hơn */
+}
+
+/* Khi hover dòng */
+.inv-table tr:hover {
+  background-color: #faf7ff; /* tím trắng nhẹ khi hover */
+}
+
+/* Hàng gần hết hàng */
+.low-row {
+  background-color: #fff7f0 !important;
+}
+
+/* Pill trạng thái */
+.pill-ok {
+  background-color: #ecffec;
+  color: #008000;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.pill-warn {
+  background-color: #fff3eb;
+  color: #e67e22;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+/* Các vùng kết quả tra cứu */
+.inv-result {
+  background-color: #ffffff;
+  border: 2px solid #d6b8ff; /* khung tím nhạt */
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  color: #222;
+  box-shadow: 0 2px 5px rgba(214,184,255,0.3); /* ánh tím nhẹ */
+}
+
+.inv-card select {
+  background-color: #f8f5ff; /* tím phấn nhạt */
+  border: 2px solid #d6b8ff; /* viền tím pastel */
+  color: #3c1f6e; /* chữ tím đậm nhẹ */
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.inv-card select:hover {
+  background-color: #f3ecff; 
+  box-shadow: 0 0 5px rgba(214,184,255,0.5);
+}
+
+.inv-card label {
+  color: #4a1e85; 
+  font-weight: 600;
+}
