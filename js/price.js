@@ -1,4 +1,15 @@
 function hienthiquanlygiaban() {
+    anTatCaGiaoDien(); // ẩn tất cả phần khác
+    document.getElementById('pricing-manager').style.display = 'block';
+}
+
+
+
+
+
+
+
+function hienthiquanlygiaban() {
     let a = document.getElementById('pricing-manager');
     if (a.style.display === "none" || a.style.display === "")
         a.style.display = "block";

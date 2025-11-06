@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quan ly ban dong ho</title>
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="/css/pricemanage.css">
+    <link rel="stylesheet" href="/css/watchTypeManager.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +24,7 @@
     <div class="body2" >
         <div class="left-menu">
                 <button class="container">Quản lý khách hàng</button>
-                <button class="container">Quản lý loại sản phẩm</button>
+                <button class="container" onclick="hienThiQuanLyLoaiSanPham()">Quản lý loại sản phẩm</button>
                 <button class="container">Quản lý danh mục sản phẩm</button>
                 <button class="container"  >Quản lý Nhập sản phẩm</button>
                 <button class="container" onclick="hienthiquanlygiaban()">Quản lý giá bán</button>
@@ -32,8 +33,22 @@
         </div>
 
         <div class="content">
+
+            <!-- Phần này quản lí loại sản phẩm  -->
+            <div id="watchtype-manager" style="display:none;">
+                <h2>Quản lý loại sản phẩm đồng hồ</h2>
+                <button onclick="themLoai()">Thêm loại</button>
+                <table class="category-table">
+                    <thead>
+                        <tr><th>STT</th><th>Tên loại</th><th>Hành động</th></tr>
+                    </thead>
+                    <tbody id="watchtype-tbody"></tbody>
+                </table>
+            </div>
             
-            <div id="pricing-manager">
+
+            <!-- Phần này quản lí giá bán -->
+            <div id="pricing-manager" >
                     <h2>Quản lý giá bán</h2>
                     <div class="pm-row">
                         <section class="pm-panel" id="by-category">
@@ -80,7 +95,11 @@
 
         </div>
     </div>
+
+
     <script src="/js/price.js"></script>
+    <script src="/js/watchTypeManager.js"></script>
+    <script src="/js/admin.js"></script>
 </body>
 
 </html>

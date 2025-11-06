@@ -3,6 +3,7 @@
     {
       "name": "CM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type": "Đồng hồ cơ",
       "price": 329,
       "old_price": 499,
       "image": "./image/best-seller.png",
@@ -11,6 +12,7 @@
     {
       "name": "DM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type": "Đồng hồ pin",
       "price": 359,
       "old_price": 479,
       "image": "./image/best-seller.png",
@@ -19,6 +21,7 @@
     {
       "name": "EM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type": "Đồng hồ pin",
       "price": 399,
       "old_price": 599,
       "image": "./image/best-seller.png",
@@ -27,6 +30,7 @@
     {
       "name": "FM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type": "Đồng hồ thông minh",
       "price": 429,
       "old_price": 699,
       "image": "./image/best-seller.png",
@@ -35,6 +39,7 @@
     {
       "name": "EM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type": "Đồng hồ thời trang",
       "price": 459,
       "old_price": 799,
       "image": "./image/best-seller.png",
@@ -43,6 +48,7 @@
     {
       "name": "GM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type":"Đồng hồ cơ",
       "price": 499,
       "old_price": 899,
       "image": "./image/best-seller.png",
@@ -51,6 +57,7 @@
     {
       "name": "HM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type":"Đồng hồ thông minh",
       "price": 529,
       "old_price": 999,
       "image": "./image/best-seller.png",
@@ -59,6 +66,7 @@
     {
       "name": "IM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type":"Đồng hồ thời trang",
       "price": 559,
       "old_price": 1099,
       "image": "./image/best-seller.png",
@@ -67,6 +75,7 @@
     {
       "name": "JM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type":"Đồng hồ thông minh",
       "price": 559,
       "old_price": 1099,
       "image": "./image/best-seller.png",
@@ -75,6 +84,7 @@
     {
       "name": "KM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type":"Đồng hồ cơ",
       "price": 559,
       "old_price": 1099,
       "image": "./image/best-seller.png",
@@ -83,6 +93,7 @@
     {
       "name": "LM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type":"Đồng hồ thời trang",
       "price": 559,
       "old_price": 1099,
       "image": "./image/best-seller.png",
@@ -91,6 +102,7 @@
     {
       "name": "LM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type":"Đồng hồ cơ",
       "price": 559,
       "old_price": 1099,
       "image": "./image/best-seller.png",
@@ -99,6 +111,7 @@
     {
       "name": "LM-S110PG-1A",
       "brand": "G-SHOCK",
+      "type":"Đồng hồ pin",
       "price": 559,
       "old_price": 1099,
       "image": "./image/best-seller.png",
