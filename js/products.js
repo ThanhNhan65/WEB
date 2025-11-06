@@ -76,7 +76,12 @@ function renderProducts(page) {
     buttons[j].addEventListener('click', function(e) {
       e.stopPropagation();
       var pid = this.getAttribute('data-id');
-      var uid = window.getCurrentUserId ? getCurrentUserId() : 'guest';
+      var uid = (typeof getCurrentUserId === 'function') ? getCurrentUserId() : null;
+      if (!uid) {
+        alert('Vui lòng đăng nhập để thêm vào giỏ hàng.');
+        window.location.href = 'login.html';
+        return;
+      }
       var key = 'app_cart' + uid;
       var cart = JSON.parse(localStorage.getItem(key) || '[]');
       var found = false;
@@ -174,19 +179,6 @@ function renderProductDetail() {
 
   var btnBuy = document.querySelector('.button-left');
   var btnAdd = document.querySelector('.button-right');
-
-  if (btnAdd) {
-    btnAdd.addEventListener('click', function() {
-      addToCartBasic(prod.id);
-    });
-  }
-
-  if (btnBuy) {
-    btnBuy.addEventListener('click', function() {
-      addToCartBasic(prod.id);
-      window.location.href = 'GioHang.html';
-    });
-  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

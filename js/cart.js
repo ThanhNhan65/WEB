@@ -70,6 +70,7 @@ function addToCart(productId, qty) {
     alert("Đã thêm vào giỏ hàng!");
 }
 
+
 function updateCartQty(productId, qty) {
     if (!requireLoginforCart()) 
       return;
@@ -212,7 +213,6 @@ function initCartPage() {
       });
     }
 
-    // Nút chuyển sang trang thanh toán
     var checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
       checkoutBtn.addEventListener('click', function(e) {
@@ -229,8 +229,6 @@ function initCartPage() {
 }
 
 function initCheckoutPage() {
-  // Không dùng nữa, đã có setupCheckoutForm cho thanhtoan.html
-  // Giữ lại để tương thích nếu có trang khác dùng btn-order
 }
 
 function initOrderHistoryPage() {

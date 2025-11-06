@@ -32,7 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
     '<tr><td>Giới tính</td><td>' + prod.specs.gender + '</td></tr>';
 
   function addToCartDetail(pid) {
-    var uid = window.getCurrentUserId ? getCurrentUserId() : 'guest';
+    if (window._addingToCart) return;
+    window._addingToCart = true;
+
+    var uid = (typeof getCurrentUserId === 'function') ? getCurrentUserId() : null;
+    if (!uid) {
+        alert('Vui lòng đăng nhập để sử dụng giỏ hàng.');
+      window._addingToCart = false;
+      window.location.href = 'login.html';
+        return false;
+    }
     var key = 'app_cart' + uid;
     var cart = JSON.parse(localStorage.getItem(key) || '[]');
     var found = false;
@@ -49,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem(key, JSON.stringify(cart));
     if (typeof updateCartCountBadge === 'function') updateCartCountBadge();
     alert('Đã thêm vào giỏ hàng!');
+    setTimeout(function(){ window._addingToCart = false; }, 200);
+      return true;
   }
 
   if (btnAdd) {
@@ -61,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (btnBuy) {
     btnBuy.addEventListener('click', function(e) {
       e.preventDefault();
-      addToCartDetail(prod.id);
-      window.location.href = 'GioHang.html';
+        var ok = addToCartDetail(prod.id);
+        if (ok) window.location.href = 'GioHang.html';
     });
   }
 });
