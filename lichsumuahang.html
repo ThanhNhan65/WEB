@@ -20,12 +20,14 @@
 
 <body>
     <div class="wrapper">
-        <!-- Header -->
         <div class="header">
             <h3 class="watch-title">WATCH</h3>
             <div class="right-header">
                 <div class="login-register">
-                    <a href="#!">Đăng ký</a><a href="#!">Đăng nhập</a>
+                    <span id="auth-user" class="greeting"></span>
+                    <a id="btn-register" href="sign up.html">Đăng ký</a>
+                    <a id="btn-login" href="login.html">Đăng nhập</a>
+                    <a id="btn-logout" href="#!">Đăng xuất</a>
                 </div>
                 <div class="search-cart-group">
                     <div class="search-bar">
@@ -33,18 +35,29 @@
                             <input type="text" placeholder="Tìm kiếm...">
                         </div>  
                         <div class="search-icon">
-                            <a href="#!"><i class="fa-solid fa-magnifying-glass"></i></a>
+                            <a href="products.html"><i class="fa-solid fa-magnifying-glass"></i></a>
                         </div>
                     </div>
                     <div class="cart-icon">
-                        <a href="#!">
+                        <a href="GioHang.html">   
                             <i class="fa-solid fa-cart-shopping" style="color: #fff;"></i>
                         </a>
                     </div>
+                    <div class="user-menu" id="user-menu">
+                        <button type="button" class="user-menu-btn" id="account-btn" aria-haspopup="true" aria-expanded="false" title="Tài khoản">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <div class="user-dropdown" id="account-dropdown" role="menu">
+                            <ul>
+                                <li><a href="hosonguoidung.html" id="profile-link">Hồ sơ người dùng</a></li>
+                                <li><a href="lichsumuahang.html" id="orders-link">Lịch sử mua hàng</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                
             </div>
         </div>
+
 
         <!-- Body -->
         <main class="body">
@@ -52,8 +65,7 @@
             <div class="navigation">
                 <ul>
                     <li><a href="index.html">Trang chủ</a></li>
-                    <li><a href="#!">Thương hiệu</a></li>
-                    <li><a href="#!">Sản phẩm</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
                 </ul>
             </div>
 
@@ -62,44 +74,9 @@
                 <h2 class="section-title">Lịch sử mua hàng</h2>
 
                 <div class="order-box">
-                    <h3>Đơn hàng của bạn</h3>
-                    <table class="order-table">
-                        <thead>
-                            <tr>
-                            <th>Mã đơn hàng</th>
-                            <th>Ngày đặt</th>
-                            <th>Sản phẩm</th>
-                            <th>Tổng tiền</th>
-                            <th>Trạng thái</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#1001</td>
-                                <td>20/09/2025</td>
-                                <td>Citizen Eco-Drive</td>
-                                <td>5,000,000đ</td>
-                                <td><span class="status paid">Đã thanh toán</span></td>
-                            </tr>
-                            <tr>
-                                <td>#1002</td>
-                                <td>25/09/2025</td>
-                                <td>Citizen Automatic</td>
-                                <td>6,500,000đ</td>
-                                <td><span class="status pending">Đang xử lý</span></td>
-                            </tr>
-                            <tr>
-                                <td>#1003</td>
-                                <td>28/09/2025</td>
-                                <td>Citizen Quartz</td>
-                                <td>3,200,000đ</td>
-                                <td><span class="status cancel">Đã hủy</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div id="order-list"></div>
                 </div>
             </section>
-
 
         </main>
         <!-- Footer -->
@@ -118,10 +95,14 @@
 
                 <div class="contact">
                 <h4>Liên hệ</h4>    
-                <p>Email: conchocaobangbopc@gmail.com</p>
+                <p>Email: watch1234@gmail.com</p>
                 <p>Tel: +84 999 999 999</p>
             </div>
         </div>
     </div>
 </body>
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
 </html>

@@ -5,108 +5,132 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sản phẩm</title>
+    <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/tatcasanpham.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Sansita:wght@400;700;800;900&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
     <div class="wrapper">
-        <!-- Phần Header -->
-        <header class="site-header">
-            <div class="container">
-                <a class="logo" href="index.html">WATCH</a>
-
-                <form class="search" action="products.html" role="search">
-                    <input type="text" name="q" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
-                    <button type="submit" aria-label="Tìm"><span>🔍</span></button>
-                </form>
-
-                <nav class="header-actions">
-                    <a href="#!">Đăng ký</a>
-                    <a href="#!">Đăng nhập</a>
-                    <a class="cart" href="#!" aria-label="Giỏ hàng">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </nav>
-            </div>
-        </header>
-
-
-        <!-- Phần body -->
-        <nav class="brand-tabs" aria-label="Thương hiệu">
-            <a href="products.html" data-brand="" class="brand-link"><span class="sr-only">Tất cả</span></a>
-
-            <a href="products.html?brand=g-shock" data-brand="g-shock" class="brand-link">
-                <img class="brand-logo" src="assets/brands/g-shock.svg" alt="G-SHOCK" />
-                <span class="sr-only">G-SHOCK</span>
-            </a>
-
-            <a href="products.html?brand=baby-g" data-brand="baby-g" class="brand-link">
-                <img class="brand-logo" src="assets/brands/baby-g.svg" alt="BABY-G" />
-                <span class="sr-only">BABY-G</span>
-            </a>
-
-            <a href="products.html?brand=pro-trek" data-brand="pro-trek" class="brand-link">
-                <img class="brand-logo" src="assets/brands/pro-trek.svg" alt="PRO TREK" />
-                <span class="sr-only">PRO TREK</span>
-            </a>
-
-            <a href="products.html?brand=edifice" data-brand="edifice" class="brand-link">
-                <img class="brand-logo" src="assets/brands/edifice.svg" alt="EDIFICE" />
-                <span class="sr-only">EDIFICE</span>
-            </a>
-
-            <a href="products.html?brand=sheen" data-brand="sheen" class="brand-link">
-                <img class="brand-logo" src="assets/brands/sheen.svg" alt="Sheen" />
-                <span class="sr-only">Sheen</span>
-            </a>
-
-            <a href="products.html?brand=casio" data-brand="casio" class="brand-link"><span>CASIO</span></a>
-            <a href="products.html?brand=oceanus" data-brand="oceanus" class="brand-link"><span>OCEANUS</span></a>
-        </nav>
-
-
-        <main class="page catalog">
-
-            <aside class="filters">
-                <h3>Sắp xếp</h3>
-                <label class="radio"><input type="radio" name="sort" value="newest" checked> Mới nhất</label>
-                <label class="radio"><input type="radio" name="sort" value="price_asc"> Giá tăng dần</label>
-                <label class="radio"><input type="radio" name="sort" value="price_desc"> Giá giảm dần</label>
-                <label class="radio"><input type="radio" name="sort" value="name_asc"> Tên A → Z</label>
-            </aside>
-
-            <section class="results">
-                <div class="results-header">
-                    <h1 id="page-title">Tất cả</h1>
-                    <div id="count" class="muted">0 sản phẩm</div>
+        <div class="header">
+            <h3 class="watch-title">WATCH</h3>
+            <div class="right-header">
+                <div class="login-register">
+                    <span id="auth-user" class="greeting"></span>
+                    <a id="btn-register" href="sign up.html">Đăng ký</a>
+                    <a id="btn-login" href="login.html">Đăng nhập</a>
+                    <a id="btn-logout" href="#!">Đăng xuất</a>
                 </div>
-                <div id="grid" class="grid"></div>
-                <div id="empty" class="empty" hidden>Không có sản phẩm phù hợp.</div>
-            </section>
-        </main>
+                <div class="search-cart-group">
+                    <div class="search-bar">
+                        <div class="search">
+                            <input type="text" placeholder="Tìm kiếm...">
+                        </div>  
+                        <div class="search-icon">
+                            <a href="products.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        </div>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="GioHang.html">   
+                            <i class="fa-solid fa-cart-shopping" style="color: #fff;"></i>
+                        </a>
+                    </div>
+                    <div class="user-menu" id="user-menu">
+                        <button type="button" class="user-menu-btn" id="account-btn" aria-haspopup="true" aria-expanded="false" title="Tài khoản">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <div class="user-dropdown" id="account-dropdown" role="menu">
+                            <ul>
+                                <li><a href="hosonguoidung.html" id="profile-link">Hồ sơ người dùng</a></li>
+                                <li><a href="lichsumuahang.html" id="orders-link">Lịch sử mua hàng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="body">
+            <div class="navigation">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                </ul>
+            </div>
+
+            <h4 id="all-products-title" class="fade-up">Tìm kiếm sản phẩm</h4>
+
+            <form id="search-form" class="search-advanced fade-up" onsubmit="return false;" aria-label="Tìm kiếm nâng cao">
+                <div class="row">
+                    <label class="field">
+                        <span class="lbl">Từ khóa</span>
+                        <input id="q" type="text" placeholder="Nhập tên sản phẩm..." />
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Loại</span>
+                        <select id="type">
+                            <option value="">Tất cả</option>
+                            <option value="Dien tu">Điện tử</option>
+                            <option value="Kim">Kim</option>
+                            <option value="Unisex">Unisex</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Giá từ</span>
+                        <input id="priceMin" type="number" min="0" step="1000" placeholder="0" />
+                    </label>
+                    <label class="field">
+                        <span class="lbl">Đến</span>
+                        <input id="priceMax" type="number" min="0" step="1000" placeholder="" />
+                    </label>
+                    <div class="actions">
+                        <button id="btnSearch" type="button"><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="all-products-wrapper fade-up">
+                <div class="product-list" id="product-list"></div>
+                <div class="pagination" id="pagination">
+                    <div class="button-page prev">prev</div>
+                    <div class="index active">1</div>
+                    <div class="index">2</div>
+                    <div class="button-page next">next</div>
+                </div>
+            </div>
+        </div>
+
+        
 
     </div>
-    <!-- Phần Footer -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <a class="logo" href="index.html">WATCH</a>
-            <div class="cols">
-                <div class="col">
-                    <h4>Địa chỉ</h4>
-                    <p>Thanh Hóa</p>
-                    <p>Cao Bằng</p>
-                    <p>120 Yên Lãng</p>
-                </div>
-                <div class="col">
-                    <h4>Liên hệ</h4>
-                    <p>email: conchocaobangbopc@gmail.com</p>
-                    <p>tel: +8499999999</p>
-                </div>
-            </div>
-            <div class="copy">© 2025 WATCH. All rights reserved.</div>
+    <div class="footer">
+        <div class="title">
+            <h3>WATCH</h3>
         </div>
-    </footer>
+        <div class="info-contact">
+            <div class="address">
+                <h4>Địa chỉ</h4>
+                <p>Thanh Hóa</p>
+                <p>Cao Bằng</p>
+                <p>120 Yên Lãng</p>
+            </div>
+            <div class="contact">
+                <h4>Liên hệ</h4>
+                <p>Email: watch1234@gmail.com</p>
+                <p>Tel: +84 999 999 999</p>
+            </div>
+        </div>
+     </div>
+    <script src="js/auth.js"></script>
     <script src="js/products.js"></script>
-</body>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    </body>
 
 </html>

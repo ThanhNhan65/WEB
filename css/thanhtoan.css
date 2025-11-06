@@ -3,40 +3,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: var(--main-font);
 }
 
 body {
   background: #f5f5f5;
   color: #333;
 }
-
-/* ==== MENU ==== */
-.navigation {
-  background: #222;
-  padding: 12px 0;
-  text-align: center;
-}
-
-.navigation ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.navigation a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.navigation a:hover {
-  color: #ffd700;
-}
-
-/* ==== CONTAINER ==== */
 .container {
   width: 90%;
   max-width: 900px;
@@ -70,7 +43,6 @@ body {
   margin-bottom: 15px;
 }
 
-/* ==== RADIO (GIAO HÀNG) ==== */
 .radio-group {
   display: flex;
   flex-direction: column;
@@ -90,7 +62,6 @@ body {
   transform: scale(1.2);
 }
 
-/* ==== PHƯƠNG THỨC THANH TOÁN ==== */
 .payment-select {
   width: 100%;
   padding: 10px;
@@ -100,15 +71,13 @@ body {
   font-size: 15px;
 }
 
-/* ==== CARD PANEL ==== */
 .card-panel {
-  background: #ececec; /* nền tối hơn nền trắng một chút */
+  background: #ececec;
   padding: 20px 25px;
   border-radius: 10px;
   margin-bottom: 20px;
 }
 
-/* form trong card */
 .card-form label {
   display: block;
   font-size: 14px;
@@ -119,7 +88,7 @@ body {
 .card-form input {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #bbb; /* khung bao quanh */
+  border: 1px solid #bbb;
   border-radius: 6px;
   background: #fff;
   outline: none;
@@ -131,12 +100,10 @@ body {
   border-color: #3cb371;
 }
 
-/* bố cục dòng form bình thường */
 .form-row {
   margin-bottom: 15px;
 }
 
-/* bỏ inline layout, cho CVV xuống dòng */
 .form-row-inline {
   display: block;
 }
@@ -145,9 +112,6 @@ body {
   margin-bottom: 15px;
 }
 
-
-
-/* ==== TÓM TẮT ĐƠN HÀNG ==== */
 .order-summary {
   background: #fafafa;
   padding: 20px 25px;
@@ -174,7 +138,6 @@ body {
   border-bottom: 1px dashed #e0e0e0;
 }
 
-/* Bỏ đường gạch trên tổng cộng */
 .order-items li:last-child {
   border-bottom: none;
 }
@@ -192,7 +155,6 @@ body {
   font-weight: 600;
 }
 
-/* ==== NÚT XÁC NHẬN ==== */
 .submit-row {
   text-align: center;
   margin-top: 25px;

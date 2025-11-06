@@ -1,42 +1,14 @@
-/* ==== RESET CƠ BẢN ==== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: var(--main-font);
 }
 
 body {
   background: #f5f5f5;
   color: #333;
 }
-
-/* ==== MENU ==== */
-.navigation {
-  background: #222;
-  padding: 12px 0;
-  text-align: center;
-}
-
-.navigation ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.navigation a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.navigation a:hover {
-  color: #ffd700;
-}
-
-/* ==== CONTAINER ==== */
 .container {
   width: 90%;
   max-width: 900px;
@@ -52,7 +24,6 @@ body {
   font-size: 26px;
   margin-bottom: 25px;
 }
-/* ===== Lịch sử mua hàng - CSS mới ===== */
 
 .order-history {
   background-color: #f8f9fa;
@@ -112,4 +83,69 @@ body {
 }
 .status.cancel {
   background-color: #dc3545;
+}
+
+.order {
+  margin: 0 auto 18px auto;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+.order-header {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 12px 18px;
+  border-bottom: 1px solid #e6e6e6;
+  background: #f7f7f7;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+.order-header:hover {
+  background: #eaeaea;
+}
+.order-details {
+  display: none;
+  padding: 12px 18px;
+  border-top: none;
+  background: #fafafa;
+  font-size: 15px;
+}
+.order-details ul {
+  margin: 0 0 8px 0;
+  padding-left: 18px;
+}
+.order-details li {
+  margin-bottom: 4px;
+  color: #222;
+}
+.order-details p {
+  margin: 0;
+  font-weight: normal;
+  color: #222;
+  font-size: 16px;
+}
+
+.order-details .order-total {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.order-details .order-status {
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+.order-details .order-status.pending {
+  background: #ffe066;
+  color: #b88600;
+}
+.order-details .order-status.success {
+  background: #d32f2f;
+  color: #fff;
+}
+.order-details .order-status.cancel {
+  background: #ffe066;
+  color: #b88600;
 }

@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --main-font:"Montserrat", sans-serif;
+}
+
+body {
+    font-family: var(--main-font);
+    background: linear-gradient(135deg, #e8e8e8 0%, #d4d4d4 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.logo-bg {
+    font-size: 120px;
+    font-weight: 900;
+    color: rgba(226, 223, 186, 0.5);
+    letter-spacing: -5px;
+    line-height: 1;
+}
+
+.logo-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 8px;
+}
+
+.login-form {
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 40px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input::placeholder {
+    color: #c0c0c0;
+}
+
+.form-group input:focus {
+    border-color: #a89bdb;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.toggle-password:hover {
+    color: #333;
+}
+
+.register-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #b8aef0 0%, #9b8ee0 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 20px;
+}
+
+.register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(155, 142, 224, 0.4);
+}
+
+.register-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .logo-bg {
+        font-size: 80px;
+    }
+
+    .logo-text {
+        font-size: 32px;
+        letter-spacing: 5px;
+    }
+
+    .login-form {
+        padding: 30px 20px;
+    }
+}

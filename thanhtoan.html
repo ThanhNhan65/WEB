@@ -20,12 +20,14 @@
 
 <body>
     <div class="wrapper">
-        <!-- Header -->
         <div class="header">
             <h3 class="watch-title">WATCH</h3>
             <div class="right-header">
                 <div class="login-register">
-                    <a href="#!">Đăng ký</a><a href="#!">Đăng nhập</a>
+                    <span id="auth-user" class="greeting"></span>
+                    <a id="btn-register" href="sign up.html">Đăng ký</a>
+                    <a id="btn-login" href="login.html">Đăng nhập</a>
+                    <a id="btn-logout" href="#!">Đăng xuất</a>
                 </div>
                 <div class="search-cart-group">
                     <div class="search-bar">
@@ -33,18 +35,29 @@
                             <input type="text" placeholder="Tìm kiếm...">
                         </div>  
                         <div class="search-icon">
-                            <a href="#!"><i class="fa-solid fa-magnifying-glass"></i></a>
+                            <a href="products.html"><i class="fa-solid fa-magnifying-glass"></i></a>
                         </div>
                     </div>
                     <div class="cart-icon">
-                        <a href="#!">
+                        <a href="GioHang.html">   
                             <i class="fa-solid fa-cart-shopping" style="color: #fff;"></i>
                         </a>
                     </div>
+                    <div class="user-menu" id="user-menu">
+                        <button type="button" class="user-menu-btn" id="account-btn" aria-haspopup="true" aria-expanded="false" title="Tài khoản">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <div class="user-dropdown" id="account-dropdown" role="menu">
+                            <ul>
+                                <li><a href="hosonguoidung.html" id="profile-link">Hồ sơ người dùng</a></li>
+                                <li><a href="lichsumuahang.html" id="orders-link">Lịch sử mua hàng</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                
             </div>
         </div>
+
 
         <!-- Body -->
         <main class="body">
@@ -52,8 +65,7 @@
             <div class="navigation">
                 <ul>
                     <li><a href="index.html">Trang chủ</a></li>
-                    <li><a href="#!">Thương hiệu</a></li>
-                    <li><a href="#!">Sản phẩm</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
                 </ul>
             </div>
 
@@ -61,29 +73,42 @@
                 <h2 class="section-title">Thanh toán</h2>
 
                 <form class="checkout-form" action="/order/confirm" method="POST" novalidate>
-                    <!-- Thông tin giao hàng (chỉ radio, input đặt trước label) -->
                     <fieldset class="checkout-section shipping">
                         <legend>Thông tin giao hàng</legend>
 
                         <div class="form-row radio-group">
-                            <label class="radio-line"><input type="radio" name="address_option" value="default" checked> <span>Dùng địa chỉ mặc định</span></label>
+                            <label class="radio-line"><input type="radio" name="address_option" value="default" checked> <span>Dùng địa chỉ tài khoản</span></label>
                             <label class="radio-line"><input type="radio" name="address_option" value="new"> <span>Nhập địa chỉ mới</span></label>
+                        </div>
+
+
+                        <div style="margin-top:6px;">
+                            <strong>Địa chỉ đã lưu:</strong>
+                            <div id="saved-addresses" class="address-list"></div>
+                        </div>
+
+                        <div id="new-address-fields" class="address-form" style="display:none; margin-top:10px;">
+                            <div class="form-row">
+                                <label for="ship-address">Địa chỉ</label>
+                                <input type="text" id="ship-address" name="ship_address" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành">
+                            </div>
+                            <div class="form-row">
+                                <label><input type="checkbox" id="save-new-address" checked> Lưu vào sổ địa chỉ</label>
+                            </div>
                         </div>
                     </fieldset>
 
-                    <!-- Phương thức thanh toán -->
                     <fieldset class="checkout-section payment">
                         <legend>Phương thức thanh toán</legend>
 
                         <div class="payment-wrapper">
                             <select id="payment_method" name="payment_method" class="payment-select">
-                                <option value="card" selected>Thẻ tín dụng/ghi nợ</option>
-                                <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                                <option value="cod" selected>Thanh toán khi nhận hàng (COD)</option>
+                                <option value="card">Thẻ tín dụng/ghi nợ</option>
                                 <option value="wallet">Ví điện tử (Momo / ZaloPay / Apple Pay)</option>
                                 <option value="bank">Chuyển khoản ngân hàng</option>
                             </select>
 
-                            <!-- Card panel: nền tối hơn, bọc các input -->
                             <div class="card-panel" aria-hidden="false">
                                 <div class="card-form">
                                     <div class="form-row">
@@ -112,25 +137,19 @@
                         </div>
                     </fieldset>
 
-                    <!-- Tóm tắt đơn hàng -->
                     <aside class="order-summary">
                         <h3>Tóm tắt đơn hàng</h3>
 
-                        <ul class="order-items">
-                            <li>Áo thun (x2): <span class="price-item">300,000₫</span></li>
-                            <li>Giày thể thao (x1): <span class="price-item">800,000₫</span></li>
-                        </ul>
+                        <ul class="order-items" id="order-items"></ul>
 
-                        <!-- thin divider dưới danh sách sản phẩm -->
                         <div class="order-divider" aria-hidden="true"></div>
 
                         <div class="order-total">
                             <span>Tổng cộng:</span>
-                            <strong>1,100,000₫</strong>
+                            <strong id="order-total">0₫</strong>
                         </div>
                     </aside>
 
-                    <!-- Nút xác nhận -->
                     <div class="form-row submit-row">
                         <button type="submit" class="btn btn-success">Xác nhận đặt hàng</button>
                     </div>
@@ -153,10 +172,15 @@
 
                 <div class="contact">
                 <h4>Liên hệ</h4>    
-                <p>Email: conchocaobangbopc@gmail.com</p>
+                <p>Email: watch1234@gmail.com</p>
                 <p>Tel: +84 999 999 999</p>
             </div>
         </div>
     </div>
 </body>
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/search.js"></script>
 </html>

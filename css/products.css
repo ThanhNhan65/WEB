@@ -1,20 +1,21 @@
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: var(--main-font, "Montserrat", sans-serif);
 }
+
 
 :root {
     --headerH: 72px;
 }
-
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
     background: #fff;
+    font-family: var(--main-font, "Montserrat", sans-serif);
 }
 
 .brand-tabs {
@@ -30,6 +31,7 @@ body {
     border-bottom: 1px solid #e8eaed;
     z-index: 20;
     overflow: auto;
+    font-family: var(--main-font, "Montserrat", sans-serif);
 }
 
 .page {
@@ -37,12 +39,14 @@ body {
     max-width: 1300px;
     margin: 16px auto 0;
     padding: 24px 20px;
+    font-family: var(--main-font, "Montserrat", sans-serif);
 }
 
 .catalog {
     display: grid;
     grid-template-columns: 260px 1fr;
     gap: 24px;
+    font-family: var(--main-font, "Montserrat", sans-serif);
 }
 
 @media (max-width: 960px) {
@@ -227,6 +231,7 @@ body {
     display: flex;
     flex-direction: column;
     transition: transform .2s ease, box-shadow .2s ease;
+    font-family: var(--main-font, "Montserrat", sans-serif);
 }
 
 .card:hover {
@@ -284,3 +289,150 @@ body {
     border-radius: 12px;
     text-align: center;
 }
+
+
+.body .all-products-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #737373;
+    margin: 30px 150px 0;
+    border-radius: 20px;
+    min-height: auto;
+}   
+
+.product-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 75px;
+    margin: 40px 60px;
+    width: 100%;
+    font-family: var(--main-font, "Montserrat", sans-serif);
+}
+
+
+.product-list .product-item.animate { opacity: 1; }
+
+
+.product-item:hover  {
+    background-color: inherit;
+}
+
+.product-item:hover img{ transform: none; }
+
+.product-info { 
+    font-family: "Montserrat", sans-serif; 
+}
+.product-brand { 
+    margin-top: 8px; 
+    font-size: 12px; 
+    font-weight: 500; 
+}
+.product-name { 
+    margin-top: 8px; 
+    font-weight: 600; 
+}
+
+.product-info a.product-name{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.product-price span { 
+    text-decoration: line-through; 
+    color: rgba(0,0,0,0.4); 
+    margin-left: 5px; 
+}
+.product-price { 
+    visibility: visible; 
+    color: rgba(255,0,0,0.8); 
+    padding-top: 20px; 
+}
+
+.product-info .btn-add-to-cart{
+    display: inline-block;     
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #111;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    font: 600 14px "Montserrat", sans-serif;
+}
+
+.search-advanced {
+    max-width: 1100px;
+    margin: 10px auto 0;
+    background: #f4f6f8;
+    border: 1px solid #e6e9ee;
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+.search-advanced .row{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 12px;
+    align-items: end;
+}
+@media (max-width: 900px){
+    .search-advanced .row{ grid-template-columns: 1fr 1fr; }
+}
+.search-advanced .field{ 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+    font-family: "Montserrat", sans-serif; 
+}
+.search-advanced .lbl{ 
+    font-size: 12px; 
+    color: #666; 
+}
+.search-advanced input, .search-advanced select{  
+    height: 36px; 
+    border-radius: 8px; 
+    border: 1px solid #d6dbe3; 
+    padding: 0 10px; 
+    outline: none; 
+    font: 500 14px "Montserrat", sans-serif;
+}
+.search-advanced .actions button{
+    height: 36px; 
+    padding: 0 14px; 
+    border: 1px solid #333; 
+    background: #111; 
+    color: #fff; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font: 600 14px "Montserrat", sans-serif;
+}
+.search-advanced .actions button:hover{ 
+    filter: brightness(1.1); 
+}
+
+#pagination{ 
+    margin: 18px auto 24px; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+#pagination .page-btn, #pagination .index{
+    min-width: 36px; 
+    height: 36px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    background: #fff; 
+    cursor: pointer; 
+    padding: 0 10px; 
+    font: 600 14px "Montserrat", sans-serif;
+}
+#pagination .index.active { 
+    background: #111; 
+    color: #fff; 
+    border-color: #111; }
+#pagination .page-btn[disabled]{ opacity: .5; cursor: not-allowed; }

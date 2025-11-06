@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/headerfooter.css">
   <link rel="stylesheet" href="css/chitietsp.css">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Sansita:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -24,7 +23,10 @@
             <h3 class="watch-title">WATCH</h3>
             <div class="right-header">
                 <div class="login-register">
-                    <a href="#!">Đăng ký</a><a href="#!">Đăng nhập</a>
+                    <span id="auth-user" class="greeting"></span>
+                    <a id="btn-register" href="sign up.html">Đăng ký</a>
+                    <a id="btn-login" href="login.html">Đăng nhập</a>
+                    <a id="btn-logout" href="#!">Đăng xuất</a>
                 </div>
                 <div class="search-cart-group">
                     <div class="search-bar">
@@ -32,18 +34,29 @@
                             <input type="text" placeholder="Tìm kiếm...">
                         </div>  
                         <div class="search-icon">
-                            <a href="#!"><i class="fa-solid fa-magnifying-glass"></i></a>
+                            <a href="products.html"><i class="fa-solid fa-magnifying-glass"></i></a>
                         </div>
                     </div>
                     <div class="cart-icon">
-                        <a href="#!">
+                        <a href="GioHang.html">   
                             <i class="fa-solid fa-cart-shopping" style="color: #fff;"></i>
                         </a>
                     </div>
+                    <div class="user-menu" id="user-menu">
+                        <button type="button" class="user-menu-btn" id="account-btn" aria-haspopup="true" aria-expanded="false" title="Tài khoản">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <div class="user-dropdown" id="account-dropdown" role="menu">
+                            <ul>
+                                <li><a href="hosonguoidung.html" id="profile-link">Hồ sơ người dùng</a></li>
+                                <li><a href="lichsumuahang.html" id="orders-link">Lịch sử mua hàng</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                
             </div>
         </div>
+
 
         <!-- Body -->
         <main class="body">
@@ -51,8 +64,7 @@
             <div class="navigation">
                 <ul>
                     <li><a href="index.html">Trang chủ</a></li>
-                    <li><a href="#!">Thương hiệu</a></li>
-                    <li><a href="#!">Sản phẩm</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
                 </ul>
             </div>
 
@@ -106,11 +118,15 @@
 
                 <div class="contact">
                 <h4>Liên hệ</h4>    
-                <p>Email: conchocaobangbopc@gmail.com</p>
+                <p>Email: watch1234@gmail.com</p>
                 <p>Tel: +84 999 999 999</p>
             </div>
         </div>
     </div>
-    <script src="js/chitietsp.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/product-detail.js"></script>
+<script src="js/search.js"></script>
 </body>
 </html>

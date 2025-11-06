@@ -22,15 +22,13 @@
   }
 }
 
- /* CSS Phần Body */
 .body {
     padding-top: 200px;
     padding-bottom: 250px;
-    min-height: 4000px;
+    height: auto;
     background-color: #E7EAEC;
 }
 
-/* Phần Navigation */
 .body .navigation {
     display: flex;
     justify-content: center;
@@ -50,12 +48,12 @@
 }
 
 .body .navigation a {
-    position: relative;
-    text-decoration: none;
-    font-family: var(--main-font);
-    font-size: 20px;
-    letter-spacing: 1px;
-    color: #000;
+  position: relative;
+  text-decoration: none;
+  font-family: var(--main-font, "Montserrat", sans-serif);
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: #000;
 }
 
 .body .navigation a::after {
@@ -73,19 +71,16 @@
     width: 100%;
 }
 
-/* Phần tất cả sản phẩm */
 
 #all-products-title {
-    display: block;
-    font-family: var(--main-font);
-    font-size: 35px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-align: center;
-    
+  display: block;
+  font-family: var(--main-font, "Montserrat", sans-serif);
+  font-size: 35px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-align: center;
 }
 
-/* Phần Filter */
 .filter-wrapper {
   position: relative;
   display: inline-block;
@@ -130,9 +125,6 @@
   background-color: #eee;
 }
 
-
-
-
 .body .all-products-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -170,6 +162,7 @@
     opacity: 1;
     transform: translateY(0);
     transition: all 0.4s ease;
+    border-radius: 10px;
 
 }
 
@@ -202,7 +195,7 @@
 }
 
 .product-info {
-    font-family: var(--main-font);
+  font-family: var(--main-font, "Montserrat", sans-serif);
 }
 
 
@@ -290,25 +283,3 @@
 .index:hover, .button-page:hover {
   opacity: 0.8;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
