@@ -64,8 +64,9 @@ function filterProductsByQuery(products) {
   var priceMax = parseInt(params.get('priceMax') || '0', 10);
   return products.filter(function(p) {
     var match = true;
-    if (q && !(p.name.toLowerCase().includes(q) || (p.brand && p.brand.toLowerCase().includes(q)))) match = false;
-    if (type && p.type !== type) match = false;
+    var pTypeOrBrand = (p.type) ? p.type : (p.brand ? p.brand : '');
+    if (q && !(p.name.toLowerCase().includes(q) || (pTypeOrBrand && pTypeOrBrand.toLowerCase().includes(q)))) match = false;
+    if (type && pTypeOrBrand !== type) match = false;
     if (priceMin && p.price < priceMin) match = false;
     if (priceMax && p.price > priceMax) match = false;
     return match;

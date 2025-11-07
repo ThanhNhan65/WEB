@@ -24,11 +24,100 @@ function seedProductsIfEmpty() {
   localStorage.setItem(PRODUCTS, JSON.stringify(products));
 }
 
+{
+  var raw = localStorage.getItem(PRODUCTS);
+  if (raw) {
+    try {
+      var arr = JSON.parse(raw);
+      var changed = false;
+      for (var i = 0; i < arr.length; i++) {
+        if (!arr[i].code) { arr[i].code = arr[i].id || ('p' + (i+1)); changed = true; }
+      }
+      if (changed) localStorage.setItem(PRODUCTS, JSON.stringify(arr));
+    } catch (e) { /* ignore parse errors */ }
+  }
+}
+
 function getAllProducts() {
   var text = localStorage.getItem(PRODUCTS);
   if (!text) return [];
   return JSON.parse(text);
 }
+
+// --- Watch type helpers (sync with WatchTypeManager) ---
+function getWatchTypes() {
+  var raw = localStorage.getItem('watchTypes');
+  if (!raw) return [];
+  return JSON.parse(raw);
+}
+
+function populateWatchTypeSelects() {
+  var types = getWatchTypes().filter(function(t){ return !t.hidden; });
+  // if watchTypes not defined, derive types from existing products
+  if(!types || types.length === 0){
+    var prods = getAllProducts();
+    var map = {};
+    for(var i=0;i<prods.length;i++){
+      var p = prods[i];
+      if(!p) continue;
+      var key = (p.type) ? p.type : (p.brand ? p.brand : null);
+      if(key) map[key] = true;
+    }
+    types = [];
+    var keys = Object.keys(map);
+    for(var k=0;k<keys.length;k++){
+      types.push({ name: keys[k] });
+    }
+  }
+
+  // target common/selectable elements for product type: data-watch-type or known ids (include admin filter and product form)
+  var selects = document.querySelectorAll('select[data-watch-type], select#type, select[name="type"], select#filter-type, select#prod-type-select, select#invTypeFilter, select#pointType, select#periodType');
+  for(var s=0;s<selects.length;s++){
+    var sel = selects[s];
+    // preserve currently selected if possible
+    var prev = sel.value;
+    sel.innerHTML = '';
+    // optional default option
+    var optAll = document.createElement('option');
+    optAll.value = '';
+    optAll.textContent = '-- Chọn loại --';
+    sel.appendChild(optAll);
+    for(var tIndex=0;tIndex<types.length;tIndex++){
+      var t = types[tIndex];
+      var o = document.createElement('option');
+      o.value = t.name; // use name to match existing product.type values
+      o.textContent = t.name;
+      sel.appendChild(o);
+    }
+    // restore value if still present
+    if (prev) sel.value = prev;
+  }
+}
+
+// Listen for updates from WatchTypeManager (same-page)
+document.addEventListener('watchTypesUpdated', function(e){
+  populateWatchTypeSelects();
+});
+
+// Listen for products updates dispatched in the same page (admin may dispatch)
+document.addEventListener('productsUpdated', function(e){
+  // re-render listing and detail
+  populateWatchTypeSelects();
+  renderProducts(currentProductPage || 1);
+  renderProductDetail();
+});
+
+// Listen for storage events (other tabs/windows)
+window.addEventListener('storage', function(e){
+  if (e.key === 'watchTypes') populateWatchTypeSelects();
+  if (e.key === PRODUCTS) {
+    // products changed in another tab (admin), re-render listing and detail if needed
+    populateWatchTypeSelects();
+    // preserve current page where possible
+    renderProducts(currentProductPage || 1);
+    renderProductDetail();
+  }
+});
 
 
 var PRODUCTS_PER_PAGE = 6;
@@ -38,6 +127,8 @@ function renderProducts(page) {
   var list = document.getElementById('product-list');
   if (!list) return;
   var products = getAllProducts();
+  // exclude hidden products from public listing
+  products = products.filter(function(p){ return !p.hidden; });
   if (typeof filterProductsByQuery === 'function') {
     products = filterProductsByQuery(products);
   }
@@ -55,12 +146,13 @@ function renderProducts(page) {
     var div = document.createElement('div');
     div.className = 'product-item';
     div.setAttribute('data-id', p.id);
+    var imgSrc = p.image || 'image/placeholder.png';
     div.innerHTML =
-      '<img src="' + p.image + '" alt="' + p.name + '" class="img">' +
+      '<img src="' + imgSrc + '" alt="' + (p.name||'') + '" class="img">' +
       '<div class="product-info">' +
-        '<div class="product-brand">' + (p.brand || '') + '</div>' +
+        '<div class="product-brand">' + (p.type || p.brand || '') + '</div>' +
         '<div class="product-name">' + p.name + '</div>' +
-        '<div class="product-price">' + p.price.toLocaleString('vi-VN') + ' ₫</div>' +
+        '<div class="product-price">' + (p.price ? Number(p.price).toLocaleString('vi-VN') + ' ₫' : '') + '</div>' +
         '<button class="btn-add-to-cart" data-id="' + p.id + '">Thêm vào giỏ</button>' +
       '</div>';
     div.addEventListener('click', function(e) {
@@ -169,13 +261,15 @@ function renderProductDetail() {
   }
 
   nameEl.textContent = prod.name;
-  imgEl.innerHTML = '<img src="' + prod.image + '" alt="' + prod.name + '">';
-  priceEl.textContent = prod.price.toLocaleString('vi-VN') + ' ₫';
+  var imgSrc = prod.image || 'image/placeholder.png';
+  imgEl.innerHTML = '<img src="' + imgSrc + '" alt="' + (prod.name||'') + '">';
+  priceEl.textContent = (prod.price ? Number(prod.price).toLocaleString('vi-VN') + ' ₫' : '');
+  var specs = prod.specs || {};
   infoEl.innerHTML =
-    '<tr><td>Thương hiệu</td><td>' + prod.brand + '</td></tr>' +
-    '<tr><td>Chất liệu</td><td>' + prod.specs.caseMaterial + '</td></tr>' +
-    '<tr><td>Kháng nước</td><td>' + prod.specs.waterResistance + '</td></tr>' +
-    '<tr><td>Giới tính</td><td>' + prod.specs.gender + '</td></tr>';
+    '<tr><td>Loại</td><td>' + (prod.type || prod.brand || '') + '</td></tr>' +
+    '<tr><td>Chất liệu</td><td>' + (specs.caseMaterial || '') + '</td></tr>' +
+    '<tr><td>Kháng nước</td><td>' + (specs.waterResistance || '') + '</td></tr>' +
+    '<tr><td>Giới tính</td><td>' + (specs.gender || '') + '</td></tr>';
 
   var btnBuy = document.querySelector('.button-left');
   var btnAdd = document.querySelector('.button-right');
@@ -183,6 +277,7 @@ function renderProductDetail() {
 
 document.addEventListener('DOMContentLoaded', function() {
   seedProductsIfEmpty();
+  populateWatchTypeSelects();
   renderProducts(1);
   renderProductDetail();
   if (typeof updateCartCountBadge === 'function') updateCartCountBadge();

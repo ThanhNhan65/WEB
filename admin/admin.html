@@ -3,84 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quan ly ban dong ho</title>
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/css/pricemanage.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@100;200;300;400&display=swap" rel="stylesheet"></head>
-
+    <title>Admin Dashboard - Quản Lý Đồng Hồ</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/category.css">
+    <link rel="stylesheet" href="../css/customermanage.css">
+    <link rel="stylesheet" href="../css/inventory.css">
+    <link rel="stylesheet" href="../css/pricemanage.css">
+    <link rel="stylesheet" href="../css/receiptmanage.css">
+    <link rel="stylesheet" href="../css/watchtypemanage.css">
+    <link rel="stylesheet" href="../css/import.css">
+</head>
 <body>
-    <div class="wrapper">
-        <div class="header">
-            <h3 class="watch-title">WATCH</h3>
-            </div>
-        </div>
-    
-    <div class="body2" >
-        <div class="left-menu">
-                <button class="container">Quản lý khách hàng</button>
-                <button class="container">Quản lý loại sản phẩm</button>
-                <button class="container">Quản lý danh mục sản phẩm</button>
-                <button class="container"  >Quản lý Nhập sản phẩm</button>
-                <button class="container" onclick="hienthiquanlygiaban()">Quản lý giá bán</button>
-                <button class="container" >Quản lý đơn đặt hàng </button>
-                <button class="container" > Quản lý số lượng tồn của sản phẩm</button>
+    <div class="container">
+        <!-- Sidebar Menu -->
+        <div class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li data-section="customer">Quản Lý Khách Hàng</li>
+                <li data-section="watchtype">Quản Lý Loại Sản Phẩm</li>
+                <li data-section="product">Quản Lý Danh Mục Sản Phẩm</li>
+                <li data-section="import">Quản lý Nhập sản phẩm</li>
+                <li data-section="pricing" class="active">Quản Lý Giá Bán</li>
+                <li data-section="receipt">Quản Lý Đơn hàng</li>
+                <li data-section="inventory">Quản lý số lượng tồn của sản phẩm</li>
+            </ul>
         </div>
 
+        <!-- Main Content -->
         <div class="content">
-            
-            <div id="pricing-manager">
-                    <h2>Quản lý giá bán</h2>
-                    <div class="pm-row">
-                        <section class="pm-panel" id="by-category">
-                            <h3>Theo loại (hãy dùng "Brand" làm loại)</h3>  
-                            <table class="category-table">
-                                <thead><tr><th>Loại (Brand)</th><th>% Lợi nhuận (mặc định)</th><th>Hành động</th></tr></thead>
-                                <tbody id="category-tbody"></tbody>
-                            </table>
-                        </section>
-
-                        <section class="pm-panel" id="by-product">
-                            <h3>Theo sản phẩm</h3>
-                            <div class="pm-controls">
-                                <label>Loại: <select id="filter-brand"><option value="">--Tất cả--</option>
-                                                                        <option value="casio">Casio</option>
-                                                                        <option value="citizen">Citizen</option>
-                                </select></label>
-                                <label>Tìm: <input id="search-product" placeholder="Tên sản phẩm..." /></label>
-                                <button onclick="filterByName()">Tìm kiếm</button>
-                            </div>
-                            <div class="product-list-container">
-                                <div class="product-list-header">
-                                    <div class="col name">Tên</div>
-                                    <div class="col cost">Giá vốn</div>
-                                    <div class="col margin">% Lợi nhuận</div>
-                                    <div class="col sell">Giá bán</div>
-                                    <div class="col action">Hành động</div>
-                                </div>
-                                <div id="product-list" class="product-list" aria-live="polite">
-                                </div>
-                            </div>
-                        </section>
+            <!-- QUẢN LÝ KHÁCH HÀNG -->
+            <div id="customer-manager" class="manager-section">
+                <h1>Quản Lý Khách Hàng</h1>
+                <div class="customer-toolbar">
+                    <div class="left-tools">
+                        <button id="btnRefreshUsers" class="btn small">Refresh</button>
+                        <button id="btnFixIds" class="btn small">Fix duplicate IDs</button>
                     </div>
+                    <div class="right-tools">
+                        <span>Số khách hàng: <strong id="customer-count">0</strong></span>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <input type="text" id="search-customer" placeholder="Tìm kiếm khách hàng..." oninput="filterCustomers()">
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã KH</th>
+                            <th>Họ Tên</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Địa Chỉ</th>
+                            <th>Trạng Thái</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customer-tbody"></tbody>
+                </table>
+            </div>
 
-                    <section class="pm-panel" id="quick-lookup">
-                        <h3>Tra cứu nhanh</h3>
-                        <div class="pm-controls">
-                            <input id="lookup-input" placeholder="Nhập tên hoặc id sản phẩm" />
-                            <button onclick="tracuu()">Tra cứu</button>
-                        </div>
-                        <div id="lookup-result"></div>
-                    </section>
+            <!-- QUẢN LÝ GIÁ BÁN -->
+            <div id="pricing-manager" class="manager-section">
+                <h1>Quản Lý Giá Bán</h1>
+                
+                <!-- Tab Navigation -->
+                    <div class="tab-headers">
+                    <button class="tab-btn active" onclick="showPricingTab('category')">Theo Loại</button>
+                    <button class="tab-btn" onclick="showPricingTab('product')">Theo Sản Phẩm</button>
+                    <button class="tab-btn" onclick="showPricingTab('lookup')">Tra Cứu</button>
                 </div>
 
+                <!-- Tab 1: Category -->
+                <div id="tab-category" class="pricing-tab">
+                    <h3>Cấu Hình % Lợi Nhuận Theo Loại</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Loại</th>
+                                <th>% Lợi Nhuận</th>
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="category-tbody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Tab 2: Products -->
+                <div id="tab-product" class="pricing-tab" style="display:none;">
+                    <h3>Quản Lý Giá Theo Sản Phẩm</h3>
+                    <div class="filter-section">
+                        <input type="text" id="search-product" placeholder="Tìm kiếm sản phẩm..." oninput="filterByName()">
+                        <select id="filter-type" onchange="filterProducts()">
+                            <option value="">Tất cả loại</option>
+                            <option value="Dien tu">Dien tu</option>
+                            <option value="Kim">Kim</option>
+                        </select>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 120px; gap: 15px; padding: 10px; background: #34495e; color: white; font-weight: bold; border-radius: 4px;">
+                        <div>Tên Sản Phẩm</div>
+                        <div>Giá hiện tại</div>
+                        <div>% điều chỉnh</div>
+                        <div>Giá mới</div>
+                        <div>Thao Tác</div>
+                    </div>
+                    <div id="product-list-pricing"></div>
+                </div>
+
+                <!-- Tab 3: Lookup -->
+                <div id="tab-lookup" class="pricing-tab" style="display:none;">
+                    <h3>Tra Cứu Giá Sản Phẩm</h3>
+                    <div class="lookup-section">
+                        <input type="text" id="lookup-input" placeholder="Nhập tên sản phẩm..." style="width: 70%; margin-right: 10px;">
+                        <button onclick="tracuu()">Tra Cứu</button>
+                        <div id="lookup-result" class="lookup-result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUẢN LÝ LOẠI SẢN PHẨM -->
+            <div id="watchtype-manager" class="manager-section">
+                <h1>Quản Lý Loại Sản Phẩm</h1>
+                <button onclick="themLoai()" style="margin-bottom: 20px;">+ Thêm Loại Mới</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Loại</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="watchtype-tbody"></tbody>
+                </table>
+            </div>
+
+            <!-- QUẢN LÝ SẢN PHẨM (ADMIN) -->
+            <div id="product-manager" class="manager-section" style="display:none;">
+                <h1>Quản Lý Danh Mục Sản Phẩm</h1>
+                <div class="product-toolbar">
+                    <div class="left-tools">
+                        <button class="btn small" onclick="renderProductList()">Refresh</button>
+                        <button class="btn small" onclick="resetForm()">Hủy form</button>
+                    </div>
+                    <div class="right-tools">
+                        <span>Số sản phẩm: <strong id="product-count">0</strong></span>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <input type="text" id="search-product-admin" placeholder="Tìm kiếm sản phẩm..." oninput="renderProductList()">
+                </div>
+
+                <div class="category-form-panel">
+                    <h3 id="form-title">Thêm sản phẩm</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prod-code">Mã sản phẩm *</label>
+                            <input type="text" id="prod-code" placeholder="Ví dụ: P001">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-name">Tên sản phẩm *</label>
+                            <input type="text" id="prod-name" placeholder="Tên sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-type-select">Loại</label>
+                            <select id="prod-type-select">
+                                <option value="">-- Chọn loại --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-type-free">Hoặc nhập loại</label>
+                            <input type="text" id="prod-type-free" placeholder="Gõ loại mới nếu không có trong danh sách">
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top:8px">
+                        <div class="form-group">
+                            <label for="prod-image">Hình (URL)</label>
+                            <input type="text" id="prod-image" placeholder="image/xxx.png">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-price">Giá</label>
+                            <input type="number" id="prod-price" placeholder="Giá (số)">
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top:8px">
+                        <div class="form-group" style="flex:1">
+                            <label for="prod-desc">Mô tả</label>
+                            <textarea id="prod-desc" rows="2" style="width:100%"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top:8px">
+                        <div class="form-group" style="flex:1">
+                            <label for="prod-spec-case">Chất liệu (caseMaterial)</label>
+                            <input type="text" id="prod-spec-case" placeholder="Ví dụ: Thép không gỉ">
+                        </div>
+                        <div class="form-group" style="flex:1">
+                            <label for="prod-spec-water">Kháng nước (waterResistance)</label>
+                            <input type="text" id="prod-spec-water" placeholder="Ví dụ: 50m">
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top:8px">
+                        <div class="form-group" style="flex:1">
+                            <label for="prod-spec-movement">Movement</label>
+                            <input type="text" id="prod-spec-movement" placeholder="Ví dụ: Quartz">
+                        </div>
+                        <div class="form-group" style="flex:1">
+                            <label for="prod-spec-gender">Giới tính (gender)</label>
+                            <input type="text" id="prod-spec-gender" placeholder="Ví dụ: Nam / Nữ / Unisex">
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top:10px; justify-content:center;">
+                        <div class="form-group" style="flex:0">
+                            <input type="hidden" id="prod-id">
+                            <button class="btn" onclick="saveProduct()">Lưu</button>
+                            <button class="btn ghost" onclick="resetForm()">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <table style="margin-top:12px;">
+                    <thead>
+                        <tr>
+                            <th>Mã SP</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Loại</th>
+                            <th>Ảnh</th>
+                            <th>Giá</th>
+                            <th>Trạng Thái</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-tbody"></tbody>
+                </table>
+            </div>
+
+            <!-- QUẢN LÝ KHO -->
+             <div id="inventory-manager" class="manager-section" style="display:none;">
+                    <h2 class="inv-title"><i class="fa-solid fa-boxes-stacked"></i> Quản lý hàng tồn</h2>
+
+                    <div class="inv-toolbar">
+                        <button class="btn primary" id="btnShowAll"><i class="fa-solid fa-eye"></i> Xem tất cả</button>
+                        <button class="btn warn" id="btnLowStock"><i class="fa-solid fa-triangle-exclamation"></i> Cảnh báo hết hàng</button>
+                        <div class="tool-inline">
+                            <label>Ngưỡng cảnh báo:
+                                <input id="lowThreshold" type="number" min="1" value="5" class="input-small">
+                            </label>
+                            <button class="btn small" id="btnSaveThreshold">Lưu</button>
+                            <span class="text-success" id="thresholdSaved" style="display:none">✓ Đã lưu</span>
+                        </div>
+                    </div>
+
+                    <!-- Bộ lọc -->
+                    <div class="inv-filters">
+                        <label>Loại:
+                            <select id="invTypeFilter">
+                                <option value="">--Tất cả--</option>
+                            </select>
+                        </label>
+                        <label>Tìm tên:
+                            <input id="invSearch" placeholder="Nhập tên sản phẩm..." />
+                        </label>
+                        <button class="btn" id="btnApplyFilter"><i class="fa-solid fa-filter"></i> Lọc</button>
+                        <button class="btn ghost" id="btnResetFilter">Xóa lọc</button>
+                    </div>
+
+                    <!-- Bảng tồn kho -->
+                    <div class="inv-card">
+                        <div class="inv-card-title">Tồn kho hiện tại</div>
+                        <div class="table-wrap">
+                            <table class="inv-table">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Loại</th>
+                                        <th>Đơn vị</th>
+                                        <th>Tồn</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="invTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tra cứu tồn tại thời điểm -->
+                    <div class="inv-card">
+                        <div class="inv-card-title">Tra cứu tồn tại </div>
+                        <div class="inv-row">
+                            <label>Chọn sản phẩm:
+                                <select id="pointProduct"></select>
+                            </label>
+                            <label>Hoặc Loại:
+                                <select id="pointType">
+                                    <option value="">--Bỏ qua--</option>
+                                </select>
+                            </label>
+                            <label>Thời điểm:
+                                <input id="pointTime" type="date">
+                            </label>
+                            <button class="btn" id="btnPointLookup">Tra cứu</button>
+                        </div>
+                        <div id="pointResult" class="inv-result"></div>
+                    </div>
+
+                    <!-- Báo cáo Nhập - Xuất - Tồn -->
+                    <div class="inv-card">
+                        <div class="inv-card-title">Nhập - Xuất - Tồn theo khoảng thời gian</div>
+                        <div class="inv-row">
+                            <label>Chọn sản phẩm:
+                                <select id="periodProduct"></select>
+                            </label>
+                            <label>Hoặc Loại:
+                                <select id="periodType">
+                                    <option value="">--Bỏ qua--</option>
+                                </select>
+                            </label>
+                            <label>Từ:
+                                <input id="periodFrom" type="date">
+                            </label>
+                            <label>Đến:
+                                <input id="periodTo" type="date">
+                            </label>
+                            <button class="btn" id="btnPeriodLookup">Xem báo cáo</button>
+                        </div>
+                        <div id="periodResult" class="inv-result"></div>
+                    </div>
+                </div>
+            
+            <!-- QUẢN LÝ HÓA ĐƠN -->
+            <div id="receipt-manager" class="manager-section">
+                <h1>Quản Lý Hóa Đơn</h1>
+                <div class="receipt-toolbar" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px;flex-wrap:wrap">
+                    <div class="left-tools" style="display:flex;gap:8px;align-items:center">
+                        <button class="btn small" id="btnReceiptRefresh" onclick="refreshReceipts()">Refresh</button>
+                    </div>
+                    <div class="right-tools" style="color:#2c3e50">
+                        Số đơn: <strong id="receipt-count">0</strong>
+                    </div>
+                </div>
+                <div class="filter-section" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                    <label>Từ ngày:
+                        <input type="date" id="filter-date-from">
+                    </label>
+                    <label>Đến ngày:
+                        <input type="date" id="filter-date-to">
+                    </label>
+                    <select id="filter-receipt-status">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="new">Mới đặt</option>
+                        <option value="processing">Đang xử lý</option>
+                        <option value="shipped">Đã giao</option>
+                        <option value="cancelled">Đã hủy</option>
+                    </select>
+                    <input type="text" id="filter-receipt-q" placeholder="Tìm theo khách hàng..." style="min-width:240px">
+                    <button class="btn small" onclick="filterReceipts()">Lọc</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã HĐ</th>
+                            <th>Ngày</th>
+                            <!-- Khách Hàng column removed per request -->
+                            <th>Tổng Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="receipt-tbody"></tbody>
+                </table>
+            </div>
+            <!-- QUẢN LÝ NHẬP SẢN PHẨM -->
+            <div id="import-manager" class="manager-section" style="display:none;">
+                <h1>Quản lý phiếu nhập</h1>
+                <div class="filter-section">
+                    <input type="date" id="imp-from">
+                    <input type="date" id="imp-to">
+                    <button onclick="importFilter()">Lọc</button>
+                    <button onclick="importNew()">+ Tạo phiếu nhập</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã PN</th>
+                            <th>Ngày nhập</th>
+                            <th>Trạng thái</th>
+                            <th>Số dòng</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="import-tbody"></tbody>
+                </table>
+            </div>
+            
         </div>
     </div>
-    <script src="/js/price.js"></script>
-</body>
 
+    <script src="../js/admin.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/price.js"></script>
+    <script src="../js/customermanage.js"></script>
+    <script src="../js/receipt.js"></script>
+    <script src="../js/inventory.js"></script>
+    <script src="../js/watchtypemanager.js"></script>
+    <script src="../js/category.js"></script>
+    <script src="../js/import.js"></script>
+</body>
 </html>

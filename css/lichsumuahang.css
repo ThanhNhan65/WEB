@@ -138,14 +138,22 @@ body {
   border-radius: 5px;
 }
 .order-details .order-status.pending {
-  background: #ffe066;
-  color: #b88600;
+  /* Mới đặt: vàng */
+  background: #ffc107;
+  color: #fff;
+}
+.order-details .order-status.processing {
+  /* Đang xử lý: cam */
+  background: #fd7e14;
+  color: #fff;
 }
 .order-details .order-status.success {
-  background: #d32f2f;
+  /* Thành công: xanh */
+  background: #28a745;
   color: #fff;
 }
 .order-details .order-status.cancel {
-  background: #ffe066;
-  color: #b88600;
+  /* Hủy: đỏ */
+  background: #dc3545;
+  color: #fff;
 }

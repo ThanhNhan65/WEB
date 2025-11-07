@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (imgEl) imgEl.innerHTML = '<img src="' + prod.image + '" alt="' + prod.name + '">';
   if (priceEl) priceEl.textContent = prod.price.toLocaleString('vi-VN') + ' ₫';
   if (infoEl) infoEl.innerHTML =
-    '<tr><td>Thương hiệu</td><td>' + prod.brand + '</td></tr>' +
+    '<tr><td>Loại</td><td>' + (prod.type || prod.brand || '') + '</td></tr>' +
     '<tr><td>Chất liệu</td><td>' + prod.specs.caseMaterial + '</td></tr>' +
     '<tr><td>Kháng nước</td><td>' + prod.specs.waterResistance + '</td></tr>' +
     '<tr><td>Giới tính</td><td>' + prod.specs.gender + '</td></tr>';

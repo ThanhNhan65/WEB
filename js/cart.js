@@ -294,7 +294,8 @@ function initOrderHistoryPage() {
     var st = (o.status || 'pending');
     var stText = 'Chờ xác nhận', stClass = 'pending';
     if (st === 'success') { stText = 'Thành công'; stClass = 'success'; }
-    else if (st === 'cancel') { stText = 'Đã huỷ'; stClass = 'cancel'; }
+  else if (st === 'cancel') { stText = 'Đã huỷ'; stClass = 'cancel'; }
+  else if (st === 'processing') { stText = 'Đang xử lý'; stClass = 'processing'; }
     status.innerHTML = 'Tình trạng: <span class="order-status ' + stClass + '">' + stText + '</span>';
     details.appendChild(status);
     var total = document.createElement("p");
@@ -321,6 +322,16 @@ document.addEventListener('DOMContentLoaded', function() {
     setupCheckoutForm();
   }
   if (document.getElementById('order-list')) initOrderHistoryPage();
+});
+
+// Listen for storage changes in other tabs/windows and refresh order history
+window.addEventListener('storage', function(e){
+  if (!e.key) return;
+  try{
+    if (e.key.indexOf('app_orders') === 0){
+      if (document.getElementById('order-list')) initOrderHistoryPage();
+    }
+  }catch(ex){}
 });
 
 function renderOrderSummary() {
@@ -403,12 +414,18 @@ function setupCheckoutForm() {
     var order = {
       id: 'order_' + Date.now(),
       createdAt: Date.now(),
+      status: 'pending',
       items: detail.lines,
       total: detail.total,
       shippingAddress: shippingAddress,
       paymentMethod: paymentMethod
     };
     saveOrder(order);
+    try{
+      if (typeof window.updateInventoryFromOrder === 'function'){
+        window.updateInventoryFromOrder(order);
+      }
+    }catch(e){ console.error('Error updating inventory from order:', e); }
     clearCart();
     alert('Đặt hàng thành công!');
     window.location.href = 'lichsumuahang.html';
