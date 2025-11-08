@@ -182,6 +182,8 @@ function renderProducts(page) {
   if (typeof updateCartCountBadge === 'function') updateCartCountBadge();
 
   renderPagination(totalPages, page);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
 }
 
 function renderPagination(totalPages, currentPage) {
