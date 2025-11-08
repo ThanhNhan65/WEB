@@ -272,3 +272,15 @@ document.addEventListener('DOMContentLoaded', function() {
   renderProductDetail();
   if (typeof updateCartCountBadge === 'function') updateCartCountBadge();
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const title = document.querySelector('.watch-title');
+  if (title) {
+    title.style.cursor = 'pointer'; // cho biết có thể click
+    title.addEventListener('click', function () {
+      window.location.href = 'index.html';
+    });
+  }
+});
+
