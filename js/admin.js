@@ -1,6 +1,3 @@
-// ===== Admin helpers và điều hướng cơ bản =====
-
-// Ẩn tất cả các phần và chỉ hiển thị phần được chọn
 function showSection(sectionName, el) {
 	const sections = document.querySelectorAll('.manager-section');
 	for (let i = 0; i < sections.length; i++) {
@@ -10,12 +7,10 @@ function showSection(sectionName, el) {
 	const target = document.getElementById(sectionName + '-manager');
 	if (target) target.style.display = 'block';
 
-	// trigger render for some sections
 	if (sectionName === 'product' && typeof renderProductList === 'function') {
 		renderProductList();
 	}
 
-	// ensure inventory table refreshes when switching into it
 	if (sectionName === 'inventory' && typeof renderInventoryTable === 'function') {
 		renderInventoryTable();
 	}
@@ -27,7 +22,6 @@ function showSection(sectionName, el) {
 	if (el && el.classList) el.classList.add('active');
 }
 
-// ===== Hàm thao tác LocalStorage =====
 function _lsGet(key, def) {
 	const data = localStorage.getItem(key);
 	if (data === null || data === undefined) {
@@ -44,19 +38,15 @@ function loadUsersLS() {
 	return _lsGet('app_users', '[]');
 }
 
-// ===== Sự kiện khi trang quản lý load =====
 window.addEventListener('load', function () {
-	// Ẩn tất cả section
 	const sections = document.querySelectorAll('.manager-section');
 	for (let i = 0; i < sections.length; i++) {
 		sections[i].style.display = 'none';
 	}
 
-	// Hiện phần quản lý khách hàng mặc định
 	const cm = document.getElementById('customer-manager');
 	if (cm) cm.style.display = 'block';
 
-	// Đánh dấu menu đầu tiên là active
 	const menuItems = document.querySelectorAll('.sidebar li');
 	if (menuItems.length > 0) {
 		for (let i = 0; i < menuItems.length; i++) {
@@ -65,7 +55,6 @@ window.addEventListener('load', function () {
 		menuItems[0].classList.add('active');
 	}
 
-	// Hiển thị danh sách khách hàng nếu hàm có tồn tại
 	if (typeof renderCustomers === 'function') {
 		renderCustomers();
 	}

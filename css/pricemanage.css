@@ -1,0 +1,55 @@
+
+.pricing-tab { 
+    display: none; 
+}
+.pricing-tab.active { 
+    display: block !important; 
+}
+
+.price-input { 
+    width: 80px; 
+}
+.price-input-small { 
+    width: 70px; 
+}
+
+.lookup-list { 
+    list-style: none; 
+    padding-left: 0; 
+}
+.lookup-item { 
+    margin-bottom: 8px; 
+    padding: 8px; 
+    border: 1px solid #eee; 
+    border-radius: 6px; 
+}
+
+.product-item { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr; 
+    gap: 8px; 
+    align-items: center; 
+    padding: 8px 0; 
+    border-bottom: 1px solid #f0f0f0; }
+.product-item .col { 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
+
+.pricing-header-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 120px;
+    gap: 15px;
+    padding: 10px;
+    background: #34495e;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.lookup-input-wide {
+    width: 70%;
+    margin-right: 10px;
+}
+

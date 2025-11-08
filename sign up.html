@@ -4,81 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Ký</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            width: 400px;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #9b8bde;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #8577c9;
-        }
-
-        .required {
-            color: red;
-        }
-
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-top: -15px;
-            margin-bottom: 15px;
-            display: none;
-        }
-
-        .success {
-            color: green;
-            font-size: 14px;
-            text-align: center;
-            margin-bottom: 15px;
-            display: none;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="css/signup.css">
 </head>
 <body>
     <div class="container">
@@ -104,6 +30,7 @@
 
             <button type="submit">Đăng ký</button>
         </form>
+        <div class="auth-switch">Đã có tài khoản? <a href="login.html">Đăng nhập</a></div>
     </div>
 </body>
 <script src="js/auth.js"></script>

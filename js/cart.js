@@ -276,7 +276,6 @@ function initOrderHistoryPage() {
       ship.textContent = "Địa chỉ giao hàng: " + o.shippingAddress;
       details.appendChild(ship);
     }
-    // Phương thức thanh toán (đen)
     if (o.paymentMethod) {
       var pm = document.createElement("p");
       var pmText = "";
@@ -324,7 +323,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (document.getElementById('order-list')) initOrderHistoryPage();
 });
 
-// Listen for storage changes in other tabs/windows and refresh order history
 window.addEventListener('storage', function(e){
   if (!e.key) return;
   try{

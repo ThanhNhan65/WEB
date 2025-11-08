@@ -25,40 +25,116 @@
   background:#284156;
   color:white;
 }
-.import-modal-header h3{margin:0;font-size:18px}
-.import-modal-header .close{background:transparent;border:0;color:white;font-size:20px;cursor:pointer}
-.import-modal-body{padding:14px 18px;display:flex;flex-direction:column;gap:12px}
-.import-modal-body label{display:flex;gap:12px;align-items:center}
+.import-modal-header h3{
+  margin:0;
+  font-size:18px
+}
+.import-modal-header .close{
+  background:transparent;
+  border:0;color:white;
+  font-size:20px;
+  cursor:pointer
+}
+.import-modal-body{
+  padding:14px 18px;
+  display:flex;
+  flex-direction:column;gap:12px
+}
+.import-modal-body label{
+  display:flex;gap:12px;
+  align-items:center
+}
 .import-modal-body input[type="date"], .import-modal-body input[type="text"], .import-modal-body input[type="number"]{padding:8px;border:1px solid #d6dbe0;border-radius:6px}
-.items-area{margin-top:8px;border:1px dashed #e3e6e9;padding:14px;border-radius:6px;background:#ffffff}
-.items-header{font-weight:700;margin-bottom:12px;font-size:16px}
-.imp-item-row{display:flex;gap:8px;align-items:center;margin-bottom:6px}
-.imp-item-row input{padding:6px;border:1px solid #ddd;border-radius:4px}
-.imp-item-row .remove{background:#e74c3c;color:white;border:0;padding:6px 8px;border-radius:4px;cursor:pointer}
-.import-modal-footer{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#f7f8f9}
-.imp-summary{font-weight:700;font-size:18px}
-.imp-actions .btn{margin-left:8px}
+.items-area{
+  margin-top:8px;
+  border:1px dashed #e3e6e9
+  ;padding:14px;
+  border-radius:6px;
+  background:#ffffff
+}
+.items-header{
+  font-weight:700;
+  margin-bottom:12px;
+  font-size:16px
+}
+.imp-item-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-bottom:6px
+}
+.imp-item-row input{
+  padding:6px;
+  border:1px solid #ddd;
+  border-radius:4px
+}
+.imp-item-row .remove{
+  background:#e74c3c;
+  color:white;
+  border:0;
+  padding:6px 8px;
+  border-radius:4px;
+  cursor:pointer
+}
+.import-modal-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 16px;
+  background:#f7f8f9
+}
+.imp-summary{
+  font-weight:700;
+  font-size:18px
+}
+.imp-actions .btn{
+  margin-left:8px
+}
 
-/* small button styles align with project */
-.btn{background:#2d9cdb;color:white;border:0;padding:8px 12px;border-radius:6px;cursor:pointer}
-.btn.ghost{background:transparent;color:#333;border:1px solid #ddd}
-.btn.warn{background:#f39c12;color:white}
-.btn.small{padding:6px 8px;font-size:13px}
-.btn.primary{background:#2d9cdb}
-.btn.cancel{background:#fff;color:#333;border:1px solid #ddd}
+.btn{
+  background:#2d9cdb;
+  color:white;
+  border:0;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer
+}
+.btn.ghost{
+  background:transparent;
+  color:#333;
+  border:1px solid #ddd
+}
+.btn.warn{
+  background:#f39c12;
+  color:white
+}
+.btn.small{
+  padding:6px 8px;
+  font-size:13px
+}
+.btn.primary{
+  background:#2d9cdb
+}
+.btn.cancel{
+  background:#fff;color:#333;
+  border:1px solid #ddd
+}
 
-/* style add line button */
-#imp-add-item{background:#2d9cdb;color:white;border:0;padding:8px 12px;border-radius:6px;margin-top:8px}
+#imp-add-item{
+  background:#2d9cdb;
+  color:white;
+  border:0;
+  padding:8px 12px;
+  border-radius:6px;
+  margin-top:8px
+}
 
-/* number input tweaks */
 input[type=number]{-moz-appearance:textfield; appearance:textfield}
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button{ -webkit-appearance: none; appearance: none; margin: 0 }
 
-/* footer buttons layout */
 .import-modal-footer .imp-actions{display:flex;gap:8px}
 
-/* responsive tweaks */
 @media(max-width:700px){
   .import-modal-inner{width:95%}
   .imp-item-row{flex-direction:column;align-items:stretch}

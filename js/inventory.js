@@ -5,8 +5,6 @@ const INV_THRESHOLD_KEY = 'inv_low_threshold_v1';
 document.addEventListener('DOMContentLoaded', function(){
     initInventoryManager();
 });
-
-// ====== localStorage helpers ======
 function isBalancedJson(s){
     var stack = [];
     for(var i = 0; i < s.length; i++){
@@ -30,9 +28,10 @@ function getLS(key, def){
     }
     return JSON.parse(raw);
 }
-function setLS(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+function setLS(key, val){ 
+    localStorage.setItem(key, JSON.stringify(val)); 
+}
 
-// ====== Init ======
 function initInventoryManager(){
     window.importsKey = IMPORTS_KEY;
     var btnShowAll = document.getElementById('btnShowAll');
@@ -63,8 +62,6 @@ function initInventoryManager(){
     populateProductSelects();
     renderInventoryTable();
 }
-
-// ====== Populate selects ======
 function populateProductSelects(){
     var products = getAllProducts();
     var selIds = ['pointProduct','periodProduct'];
@@ -84,7 +81,6 @@ function populateProductSelects(){
     }
 }
 
-// ====== Tính tồn kho đến thời điểm ======
 function computeStockUpTo(productId, atTime){
     var imports = getLS(IMPORTS_KEY, []);
     var receipts = getLS(RECEIPT_KEY, []);
@@ -100,7 +96,6 @@ function computeStockUpTo(productId, atTime){
     var baseStock = Number(prod.initialStock || prod.stock || prod.qty || 0) || 0;
     var inQty = 0, outQty = 0;
 
-    // ==== Cộng nhập ====
     for(var i = 0; i < imports.length; i++){
         var im = imports[i];
         var d = new Date(im.date);
@@ -114,7 +109,6 @@ function computeStockUpTo(productId, atTime){
         }
     }
 
-    // ==== Trừ xuất ====
     for(var r = 0; r < receipts.length; r++){
         var rc = receipts[r];
         var d2 = new Date(rc.date);
@@ -131,7 +125,6 @@ function computeStockUpTo(productId, atTime){
     return (baseStock + inQty - outQty);
 }
 
-// ====== Hiển thị tồn kho ======
 function renderInventoryTable(){
     var body = document.getElementById('invTableBody');
     if(!body) return;
@@ -171,7 +164,6 @@ function renderInventoryTable(){
     syncProductStocks();
 }
 
-// ====== Lưu ngưỡng cảnh báo ======
 function saveThreshold(){
     var v = Number(document.getElementById('lowThreshold').value) || 5;
     setLS(INV_THRESHOLD_KEY, v);
@@ -182,7 +174,6 @@ function saveThreshold(){
     }
 }
 
-// ====== Hiển thị hàng sắp hết ======
 function renderLowStock(){
     var body = document.getElementById('invTableBody');
     if(!body) return;
@@ -210,7 +201,6 @@ function renderLowStock(){
     }
 }
 
-// ====== Đồng bộ tồn kho vào danh mục ======
 function syncProductStocks(){
     var prods = getAllProducts();
     if(!prods || prods.length === 0) return;
@@ -230,7 +220,6 @@ function syncProductStocks(){
     }
 }
 
-// ====== Tra cứu tồn tại thời điểm ======
 function pointLookup(){
     var pid = document.getElementById('pointProduct') ? document.getElementById('pointProduct').value : '';
     var type = document.getElementById('pointType') ? document.getElementById('pointType').value : '';
@@ -338,9 +327,6 @@ function getProductType(code){
     return '';
 }
 
-// ====== Update inventory from an order (public API) ======
-// This records a sale receipt into RECEIPT_KEY and updates product stock
-// Usage: window.updateInventoryFromOrder(order)
 function updateInventoryFromOrder(order){
     if(!order) return;
     try{
@@ -358,7 +344,6 @@ function updateInventoryFromOrder(order){
         receipts.unshift(rc);
         setLS(RECEIPT_KEY, receipts);
 
-        // Update products immediately for UI consistency (also kept for history via receipts)
         var prods = getAllProducts();
         if(prods && prods.length){
             for(var i = 0; i < rc.items.length; i++){
@@ -384,11 +369,8 @@ function updateInventoryFromOrder(order){
     }
 }
 
-// expose for other scripts
 window.updateInventoryFromOrder = updateInventoryFromOrder;
 
-// ====== React to cross-tab/local updates ======
-// When receipts or products change in another tab, refresh table (if present) else just sync stocks
 window.addEventListener('storage', function(e){
     if(!e || !e.key) return;
     if(e.key === RECEIPT_KEY || e.key === 'app_products' || e.key === IMPORTS_KEY){
@@ -400,7 +382,6 @@ window.addEventListener('storage', function(e){
     }
 });
 
-// Also listen to the custom productsUpdated event (dispatched after order placement)
 window.addEventListener('productsUpdated', function(){
     if(document.getElementById('invTableBody')){
         renderInventoryTable();

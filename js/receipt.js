@@ -1,7 +1,5 @@
 (function(){
-  const ORDER_PREFIX = 'app_orders'; // đọc trực tiếp từ key của người dùng
-  // per-order save (no global pending changes)
-
+  const ORDER_PREFIX = 'app_orders';
   function getAllOrders(){
     const allKeys = Object.keys(localStorage);
     let allOrders = [];
@@ -11,11 +9,10 @@
         try {
           const orders = JSON.parse(localStorage.getItem(k)) || [];
           orders.forEach(o => {
-            // thêm userId vào mỗi đơn (cắt phần đuôi key)
             o.userId = k.replace(ORDER_PREFIX, '');
             allOrders.push(o);
           });
-        } catch(e){ /* bỏ qua key hỏng */ }
+        } catch(e){}
       }
     }
     return allOrders;
@@ -24,15 +21,23 @@
   function normalizeStatus(s){
     if(!s) return '';
     const t = (''+s).toLowerCase();
-    if (t.includes('mới')) return 'new';
-    if (t.includes('xử lý')) return 'processing';
-    if (t.includes('giao')) return 'shipped';
-    if (t.includes('hủy') || t.includes('huy')) return 'cancelled';
-    // map common english/short statuses from checkout module
-    if (t === 'pending') return 'new';
-    if (t === 'success' || t === 'paid') return 'shipped';
-    if (t === 'cancel') return 'cancelled';
-    if (['new','processing','shipped','cancelled'].includes(t)) return t;
+    if (t.includes('mới')) 
+      return 'new';
+    if (t.includes('xử lý')) 
+      return 'processing';
+    if (t.includes('giao')) 
+      return 'shipped';
+    if (t.includes('hủy') || t.includes('huy')) 
+      return 'cancelled';
+    if (t === 'pending') 
+      return 'new';
+    if (t === 'success' || t === 'paid') 
+      return 'shipped';
+    if (t === 'cancel') 
+      return 'cancelled';
+    if (['new','processing','shipped','cancelled'].includes(t)) 
+      return t;
+
     return t;
   }
 
@@ -52,27 +57,24 @@
   function applyFilters(list){
     const {from, to, status, q} = getFilters();
     return list.filter(r => {
-      // date filter
       let pass = true;
       if (from || to){
         const d = r.date ? new Date(r.date) : (r.createdAt ? new Date(r.createdAt) : null);
         if (from && (!d || d < from)) pass = false;
         if (to){
-          // include day end
           const end = new Date(to); end.setHours(23,59,59,999);
           if (!d || d > end) pass = false;
         }
       }
 
-      if (!pass) return false;
+      if (!pass) 
+        return false;
 
-      // status filter
       if (status){
         const ns = normalizeStatus(r.status);
         if (ns !== status) return false;
       }
 
-      // query filter
       if (q){
         const id = (r.id || '').toLowerCase();
         const cust = (r.customerName || r.customer || '').toLowerCase();
@@ -87,13 +89,13 @@
   function renderReceipts(){
     const tbody = document.getElementById('receipt-tbody');
     const countEl = document.getElementById('receipt-count');
-  // summary removed per request
   if (!tbody) return;
     const all = getAllOrders();
     const list = applyFilters(all);
     tbody.innerHTML = '';
 
-  if (countEl) countEl.textContent = String(list.length);
+  if (countEl) 
+    countEl.textContent = String(list.length);
 
     if (list.length === 0){
       const tr = document.createElement('tr');
@@ -151,7 +153,7 @@
       const yy = d.getFullYear();
       return `${dd}/${mm}/${yy}`;
     }
-    return s; // giữ nguyên nếu không parse được
+    return s;
   }
 
   function renderStatusControl(orderId, s){
@@ -174,12 +176,14 @@
       const arr = JSON.parse(localStorage.getItem(k) || '[]');
       for (let i=0;i<arr.length;i++){
         if (arr[i] && arr[i].id === orderId){
-          // map admin status -> checkout/user-facing status values
           let saveStatus = adminStatus;
           if (adminStatus === 'new') saveStatus = 'pending';
-          else if (adminStatus === 'shipped') saveStatus = 'success';
-          else if (adminStatus === 'cancelled') saveStatus = 'cancel';
-          else if (adminStatus === 'processing') saveStatus = 'processing';
+          else if (adminStatus === 'shipped') 
+                    saveStatus = 'success';
+            else if (adminStatus === 'cancelled') 
+                  saveStatus = 'cancel';
+              else if (adminStatus === 'processing') 
+                  saveStatus = 'processing';
           arr[i].status = saveStatus;
           localStorage.setItem(k, JSON.stringify(arr));
           updated = true;
@@ -196,18 +200,12 @@
       try{ alert('Không tìm thấy đơn để lưu: ' + orderId); }catch(e){}
     }
   }
-
-  // buildFilterSummary removed (không hiển thị dòng tóm tắt nữa)
-
-  // public APIs used by HTML inline handlers
   function filterReceipts(){ renderReceipts(); }
   function refreshReceipts(){ renderReceipts(); }
 
-  // expose
   window.filterReceipts = filterReceipts;
   window.refreshReceipts = refreshReceipts;
   window.saveSingleOrderStatus = saveSingleOrderStatus;
 
-  // init on load
   document.addEventListener('DOMContentLoaded', renderReceipts);
 })();

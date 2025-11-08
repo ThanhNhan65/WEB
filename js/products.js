@@ -34,7 +34,7 @@ function seedProductsIfEmpty() {
         if (!arr[i].code) { arr[i].code = arr[i].id || ('p' + (i+1)); changed = true; }
       }
       if (changed) localStorage.setItem(PRODUCTS, JSON.stringify(arr));
-    } catch (e) { /* ignore parse errors */ }
+    } catch (e) {}
   }
 }
 
@@ -44,7 +44,6 @@ function getAllProducts() {
   return JSON.parse(text);
 }
 
-// --- Watch type helpers (sync with WatchTypeManager) ---
 function getWatchTypes() {
   var raw = localStorage.getItem('watchTypes');
   if (!raw) return [];
@@ -53,7 +52,6 @@ function getWatchTypes() {
 
 function populateWatchTypeSelects() {
   var types = getWatchTypes().filter(function(t){ return !t.hidden; });
-  // if watchTypes not defined, derive types from existing products
   if(!types || types.length === 0){
     var prods = getAllProducts();
     var map = {};
@@ -70,14 +68,11 @@ function populateWatchTypeSelects() {
     }
   }
 
-  // target common/selectable elements for product type: data-watch-type or known ids (include admin filter and product form)
   var selects = document.querySelectorAll('select[data-watch-type], select#type, select[name="type"], select#filter-type, select#prod-type-select, select#invTypeFilter, select#pointType, select#periodType');
   for(var s=0;s<selects.length;s++){
     var sel = selects[s];
-    // preserve currently selected if possible
     var prev = sel.value;
     sel.innerHTML = '';
-    // optional default option
     var optAll = document.createElement('option');
     optAll.value = '';
     optAll.textContent = '-- Chọn loại --';
@@ -85,35 +80,28 @@ function populateWatchTypeSelects() {
     for(var tIndex=0;tIndex<types.length;tIndex++){
       var t = types[tIndex];
       var o = document.createElement('option');
-      o.value = t.name; // use name to match existing product.type values
+      o.value = t.name; 
       o.textContent = t.name;
       sel.appendChild(o);
     }
-    // restore value if still present
     if (prev) sel.value = prev;
   }
 }
 
-// Listen for updates from WatchTypeManager (same-page)
 document.addEventListener('watchTypesUpdated', function(e){
   populateWatchTypeSelects();
 });
 
-// Listen for products updates dispatched in the same page (admin may dispatch)
 document.addEventListener('productsUpdated', function(e){
-  // re-render listing and detail
   populateWatchTypeSelects();
   renderProducts(currentProductPage || 1);
   renderProductDetail();
 });
 
-// Listen for storage events (other tabs/windows)
 window.addEventListener('storage', function(e){
   if (e.key === 'watchTypes') populateWatchTypeSelects();
   if (e.key === PRODUCTS) {
-    // products changed in another tab (admin), re-render listing and detail if needed
     populateWatchTypeSelects();
-    // preserve current page where possible
     renderProducts(currentProductPage || 1);
     renderProductDetail();
   }
@@ -127,7 +115,6 @@ function renderProducts(page) {
   var list = document.getElementById('product-list');
   if (!list) return;
   var products = getAllProducts();
-  // exclude hidden products from public listing
   products = products.filter(function(p){ return !p.hidden; });
   if (typeof filterProductsByQuery === 'function') {
     products = filterProductsByQuery(products);
@@ -214,7 +201,8 @@ function renderPagination(totalPages, currentPage) {
   var maxShow = 5;
   var start = Math.max(1, currentPage - 2);
   var end = Math.min(totalPages, start + maxShow - 1);
-  if (end - start < maxShow - 1) start = Math.max(1, end - maxShow + 1);
+  if (end - start < maxShow - 1) 
+    start = Math.max(1, end - maxShow + 1);
   for (var i = start; i <= end; i++) {
     var idx = document.createElement('button');
     idx.className = 'index' + (i === currentPage ? ' active' : '');

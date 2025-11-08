@@ -205,7 +205,6 @@ function openImportModal(data, mode){
 		const row = document.createElement('div');
 		row.className = 'imp-item-row';
 
-		// build product select
 		let selectHtml = '<select class="i-prod"><option value="">-- Chọn SP --</option>';
 		products.forEach(p => { selectHtml += '<option value="' + p.id + '">' + p.name + '</option>'; });
 		selectHtml += '</select>';
@@ -238,13 +237,10 @@ function openImportModal(data, mode){
 		updateTotal();
 	}
 
-	// populate items
 	(data.items||[]).forEach(it=> addItemRow(it));
 
-	// add button
 	modal.querySelector('#imp-add-item').addEventListener('click', ()=> addItemRow({}));
 
-	// actions
 	const actionsEl = modal.querySelector('.imp-actions');
 	function updateTotal(){
 		const rows = itemsContainer.querySelectorAll('.imp-item-row');
@@ -258,7 +254,6 @@ function openImportModal(data, mode){
 	}
 
 	if(mode === 'view'){
-		// disable inputs and hide add/remove
 		modal.querySelector('#imp-date').setAttribute('disabled','');
 		itemsContainer.querySelectorAll('.imp-item-row .remove').forEach(b=> b.remove());
 		modal.querySelector('#imp-add-item').style.display = 'none';
@@ -266,7 +261,6 @@ function openImportModal(data, mode){
 	} else {
 		actionsEl.innerHTML = '<button class="btn save">Lưu</button> <button class="btn ghost close-btn">Hủy</button>';
 		actionsEl.querySelector('.save').addEventListener('click', ()=>{
-			// gather data
 			const code = modal.querySelector('#imp-code').value.trim();
 			const date = modal.querySelector('#imp-date').value;
 			const rows = itemsContainer.querySelectorAll('.imp-item-row');
@@ -303,18 +297,15 @@ function openImportModal(data, mode){
 		});
 	}
 
-	// close buttons
 	modal.querySelectorAll('.close, .close-btn').forEach(btn=> btn.addEventListener('click', closeModal));
 
 	function closeModal(){
 		modal.remove();
 	}
 
-	// compute total on open
 	updateTotal();
 }
 
-// Expose some functions to be callable from inline HTML if needed
 window.importFilter = importFilter;
 window.importNew = importNew;
 

@@ -89,7 +89,7 @@
                 </div>
 
                 <!-- Tab 2: Products -->
-                <div id="tab-product" class="pricing-tab" style="display:none;">
+                <div id="tab-product" class="pricing-tab">
                     <h3>Quản Lý Giá Theo Sản Phẩm</h3>
                     <div class="filter-section">
                         <input type="text" id="search-product" placeholder="Tìm kiếm sản phẩm..." oninput="filterByName()">
@@ -99,7 +99,7 @@
                             <option value="Kim">Kim</option>
                         </select>
                     </div>
-                    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 120px; gap: 15px; padding: 10px; background: #34495e; color: white; font-weight: bold; border-radius: 4px;">
+                    <div class="pricing-header-grid">
                         <div>Tên Sản Phẩm</div>
                         <div>Giá hiện tại</div>
                         <div>% điều chỉnh</div>
@@ -110,10 +110,10 @@
                 </div>
 
                 <!-- Tab 3: Lookup -->
-                <div id="tab-lookup" class="pricing-tab" style="display:none;">
+                <div id="tab-lookup" class="pricing-tab">
                     <h3>Tra Cứu Giá Sản Phẩm</h3>
                     <div class="lookup-section">
-                        <input type="text" id="lookup-input" placeholder="Nhập tên sản phẩm..." style="width: 70%; margin-right: 10px;">
+                        <input type="text" id="lookup-input" placeholder="Nhập tên sản phẩm..." class="lookup-input-wide">
                         <button onclick="tracuu()">Tra Cứu</button>
                         <div id="lookup-result" class="lookup-result"></div>
                     </div>
@@ -123,7 +123,7 @@
             <!-- QUẢN LÝ LOẠI SẢN PHẨM -->
             <div id="watchtype-manager" class="manager-section">
                 <h1>Quản Lý Loại Sản Phẩm</h1>
-                <button onclick="themLoai()" style="margin-bottom: 20px;">+ Thêm Loại Mới</button>
+                <button onclick="themLoai()" class="mb-20">+ Thêm Loại Mới</button>
                 <table>
                     <thead>
                         <tr>
@@ -137,7 +137,7 @@
             </div>
 
             <!-- QUẢN LÝ SẢN PHẨM (ADMIN) -->
-            <div id="product-manager" class="manager-section" style="display:none;">
+            <div id="product-manager" class="manager-section">
                 <h1>Quản Lý Danh Mục Sản Phẩm</h1>
                 <div class="product-toolbar">
                     <div class="left-tools">
@@ -175,7 +175,7 @@
                             <input type="text" id="prod-type-free" placeholder="Gõ loại mới nếu không có trong danh sách">
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top:8px">
+                    <div class="form-row mt-8">
                         <div class="form-group">
                             <label for="prod-image">Hình (URL)</label>
                             <input type="text" id="prod-image" placeholder="image/xxx.png">
@@ -185,34 +185,34 @@
                             <input type="number" id="prod-price" placeholder="Giá (số)">
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top:8px">
-                        <div class="form-group" style="flex:1">
+                    <div class="form-row mt-8">
+                        <div class="form-group flex-1">
                             <label for="prod-desc">Mô tả</label>
-                            <textarea id="prod-desc" rows="2" style="width:100%"></textarea>
+                            <textarea id="prod-desc" rows="2" class="w-100"></textarea>
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top:8px">
-                        <div class="form-group" style="flex:1">
+                    <div class="form-row mt-8">
+                        <div class="form-group flex-1">
                             <label for="prod-spec-case">Chất liệu (caseMaterial)</label>
                             <input type="text" id="prod-spec-case" placeholder="Ví dụ: Thép không gỉ">
                         </div>
-                        <div class="form-group" style="flex:1">
+                        <div class="form-group flex-1">
                             <label for="prod-spec-water">Kháng nước (waterResistance)</label>
                             <input type="text" id="prod-spec-water" placeholder="Ví dụ: 50m">
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top:8px">
-                        <div class="form-group" style="flex:1">
+                    <div class="form-row mt-8">
+                        <div class="form-group flex-1">
                             <label for="prod-spec-movement">Movement</label>
                             <input type="text" id="prod-spec-movement" placeholder="Ví dụ: Quartz">
                         </div>
-                        <div class="form-group" style="flex:1">
+                        <div class="form-group flex-1">
                             <label for="prod-spec-gender">Giới tính (gender)</label>
                             <input type="text" id="prod-spec-gender" placeholder="Ví dụ: Nam / Nữ / Unisex">
                         </div>
                     </div>
-                    <div class="form-row" style="margin-top:10px; justify-content:center;">
-                        <div class="form-group" style="flex:0">
+                    <div class="form-row mt-10 jcc">
+                        <div class="form-group flex-0">
                             <input type="hidden" id="prod-id">
                             <button class="btn" onclick="saveProduct()">Lưu</button>
                             <button class="btn ghost" onclick="resetForm()">Hủy</button>
@@ -220,7 +220,7 @@
                     </div>
                 </div>
 
-                <table style="margin-top:12px;">
+                <table class="mt-12">
                     <thead>
                         <tr>
                             <th>Mã SP</th>
@@ -237,7 +237,7 @@
             </div>
 
             <!-- QUẢN LÝ KHO -->
-             <div id="inventory-manager" class="manager-section" style="display:none;">
+             <div id="inventory-manager" class="manager-section">
                     <h2 class="inv-title"><i class="fa-solid fa-boxes-stacked"></i> Quản lý hàng tồn</h2>
 
                     <div class="inv-toolbar">
@@ -248,7 +248,7 @@
                                 <input id="lowThreshold" type="number" min="1" value="5" class="input-small">
                             </label>
                             <button class="btn small" id="btnSaveThreshold">Lưu</button>
-                            <span class="text-success" id="thresholdSaved" style="display:none">✓ Đã lưu</span>
+                            <span class="text-success hidden" id="thresholdSaved">✓ Đã lưu</span>
                         </div>
                     </div>
 
@@ -333,15 +333,15 @@
             <!-- QUẢN LÝ HÓA ĐƠN -->
             <div id="receipt-manager" class="manager-section">
                 <h1>Quản Lý Hóa Đơn</h1>
-                <div class="receipt-toolbar" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px;flex-wrap:wrap">
-                    <div class="left-tools" style="display:flex;gap:8px;align-items:center">
+                <div class="receipt-toolbar">
+                    <div class="left-tools">
                         <button class="btn small" id="btnReceiptRefresh" onclick="refreshReceipts()">Refresh</button>
                     </div>
-                    <div class="right-tools" style="color:#2c3e50">
+                    <div class="right-tools">
                         Số đơn: <strong id="receipt-count">0</strong>
                     </div>
                 </div>
-                <div class="filter-section" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                <div class="filter-section receipt-filters">
                     <label>Từ ngày:
                         <input type="date" id="filter-date-from">
                     </label>
@@ -355,7 +355,7 @@
                         <option value="shipped">Đã giao</option>
                         <option value="cancelled">Đã hủy</option>
                     </select>
-                    <input type="text" id="filter-receipt-q" placeholder="Tìm theo khách hàng..." style="min-width:240px">
+                    <input type="text" id="filter-receipt-q" placeholder="Tìm theo khách hàng..." class="minw-240">
                     <button class="btn small" onclick="filterReceipts()">Lọc</button>
                 </div>
                 <table>
@@ -363,7 +363,6 @@
                         <tr>
                             <th>Mã HĐ</th>
                             <th>Ngày</th>
-                            <!-- Khách Hàng column removed per request -->
                             <th>Tổng Tiền</th>
                             <th>Trạng Thái</th>
                             <th>Thao Tác</th>
@@ -373,7 +372,7 @@
                 </table>
             </div>
             <!-- QUẢN LÝ NHẬP SẢN PHẨM -->
-            <div id="import-manager" class="manager-section" style="display:none;">
+            <div id="import-manager" class="manager-section">
                 <h1>Quản lý phiếu nhập</h1>
                 <div class="filter-section">
                     <input type="date" id="imp-from">

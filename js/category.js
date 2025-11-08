@@ -129,11 +129,11 @@
       if (old) type = old.value.trim();
     }
     const image = document.getElementById('prod-image').value.trim();
-  const desc = document.getElementById('prod-desc').value.trim();
-  var specCase = (document.getElementById('prod-spec-case')||{}).value || '';
-  var specWater = (document.getElementById('prod-spec-water')||{}).value || '';
-  var specMovement = (document.getElementById('prod-spec-movement')||{}).value || '';
-  var specGender = (document.getElementById('prod-spec-gender')||{}).value || '';
+    const desc = document.getElementById('prod-desc').value.trim();
+    var specCase = (document.getElementById('prod-spec-case')||{}).value || '';
+    var specWater = (document.getElementById('prod-spec-water')||{}).value || '';
+    var specMovement = (document.getElementById('prod-spec-movement')||{}).value || '';
+    var specGender = (document.getElementById('prod-spec-gender')||{}).value || '';
 
     if (!code || !name) {
       alert('Mã và tên không được để trống!');

@@ -1,14 +1,7 @@
 'use strict';
-
-/* ===============================
-   QUẢN LÝ GIÁ BÁN SẢN PHẨM
-   =============================== */
-
-// ======= Key LocalStorage =======
 const PRODUCTS_KEY = 'app_products';
-const PROFIT_KEY   = 'app_profit'; // lưu % lợi nhuận theo loại
+const PROFIT_KEY   = 'app_profit';
 
-// ======= Hàm đọc & ghi LocalStorage =======
 function getAllProducts(){
     var raw = localStorage.getItem(PRODUCTS_KEY);
     if(!raw) return [];
@@ -28,8 +21,6 @@ function getProfitRates(){
 function saveProfitRates(obj){
     localStorage.setItem(PROFIT_KEY, JSON.stringify(obj || {}));
 }
-
-// ======= Hàm đồng bộ & khởi tạo =======
 function syncProductsFromMain(){
     var raw = localStorage.getItem(PRODUCTS_KEY);
     if(!raw) return;
@@ -47,10 +38,8 @@ function initPriceManager(){
     showPricingTab('category');
 }
 
-// run on load
 document.addEventListener('DOMContentLoaded', initPriceManager);
 
-// ======= Lắng nghe thay đổi realtime =======
 window.addEventListener('storage', function(e){
     if(e.key === PRODUCTS_KEY){
         console.log('⚡ Dữ liệu sản phẩm thay đổi, cập nhật lại...');
@@ -64,37 +53,32 @@ window.addEventListener('storage', function(e){
     }
 });
 
-// listen for same-page updates from WatchTypeManager
 document.addEventListener('watchTypesUpdated', function(){
     renderCategoryPricing();
     renderProductPricing();
 });
 
-// ======= Hiển thị tab =======
 function showPricingTab(tab){
     var secs = document.querySelectorAll('.pricing-tab');
     for(var i=0;i<secs.length;i++){
-        secs[i].style.display = 'none';
+        secs[i].classList.remove('active');
     }
     var active = document.getElementById('tab-'+tab);
-    if(active) active.style.display = 'block';
+    if(active) active.classList.add('active');
 }
 
-// read watch types from localStorage (no try/catch per project style)
 function getWatchTypesLocal(){
     var raw = localStorage.getItem('watchTypes');
     if(!raw) return [];
     return JSON.parse(raw);
 }
 
-// ======= 1️⃣ Theo LOẠI SẢN PHẨM =======
 function renderCategoryPricing(){
     var list = getAllProducts();
     var profit = getProfitRates();
     var tbody = document.getElementById('category-tbody');
     if(!tbody) return;
 
-    // Prefer canonical watchTypes if available
     var watchTypes = getWatchTypesLocal();
     var keys = [];
     if(watchTypes && watchTypes.length > 0){
@@ -104,7 +88,6 @@ function renderCategoryPricing(){
             if(wt.name) keys.push(wt.name);
         }
     } else {
-        // fallback: derive types from products (use type or brand)
         var typesMap = {};
         for(var i=0;i<list.length;i++){
             var p = list[i];
@@ -119,7 +102,7 @@ function renderCategoryPricing(){
     for(var k=0;k<keys.length;k++){
         var t = keys[k];
         var val = profit[t] || 0;
-        html += "\n        <tr>\n            <td>"+t+"</td>\n            <td><input type=\"number\" id=\"profit_"+t+"\" value=\""+val+"\" min=\"0\" style=\"width:80px\"></td>\n            <td><button onclick=\"updateCategoryProfit('"+t+"')\">Lưu</button></td>\n        </tr>";
+        html += "\n        <tr>\n            <td>"+t+"</td>\n            <td><input type=\"number\" id=\"profit_"+t+"\" value=\""+val+"\" min=\"0\" class=\"price-input\"></td>\n            <td><button onclick=\"updateCategoryProfit('"+t+"')\">Lưu</button></td>\n        </tr>";
     }
     tbody.innerHTML = html;
 }
@@ -131,10 +114,9 @@ function updateCategoryProfit(type){
     profit[type] = Number(input.value) || 0;
     saveProfitRates(profit);
     alert('Đã lưu tỷ lệ lợi nhuận cho loại ' + type);
-    renderProductPricing(); // cập nhật lại bảng sản phẩm
+    renderProductPricing();
 }
 
-// ======= 2️⃣ Theo TỪNG SẢN PHẨM =======
 function renderProductPricing(filterName, filterType){
     var list = getAllProducts();
     var profit = getProfitRates();
@@ -157,7 +139,7 @@ function renderProductPricing(filterName, filterType){
         var catProfit = profit[pTypeKey] || 0;
         var custom = (p.customProfit != null && p.customProfit !== undefined) ? p.customProfit : catProfit;
         var sell = Number(p.price || 0) * (1 + custom/100);
-        html += "\n        <div class=\"product-item\">\n            <div class=\"col\">"+p.name+"</div>\n            <div class=\"col\">"+Number(p.price||0).toLocaleString()+"đ</div>\n            <div class=\"col\"><input type=\"number\" id=\"custom_"+p.id+"\" value=\""+custom+"\" min=\"0\" style=\"width:70px\"></div>\n            <div class=\"col\">"+sell.toLocaleString()+"đ</div>\n            <div class=\"col\"><button onclick=\"saveProductProfit('"+p.id+"')\">Lưu</button></div>\n        </div>";
+        html += "\n        <div class=\"product-item\">\n            <div class=\"col\">"+p.name+"</div>\n            <div class=\"col\">"+Number(p.price||0).toLocaleString()+"đ</div>\n            <div class=\"col\"><input type=\"number\" id=\"custom_"+p.id+"\" value=\""+custom+"\" min=\"0\" class=\"price-input-small\"></div>\n            <div class=\"col\">"+sell.toLocaleString()+"đ</div>\n            <div class=\"col\"><button onclick=\"saveProductProfit('"+p.id+"')\">Lưu</button></div>\n        </div>";
     }
     container.innerHTML = html;
 }
@@ -187,7 +169,7 @@ function tracuu(){
         if((p.name||'').toLowerCase().indexOf(q) !== -1) matches.push(p);
     }
     if(matches.length === 0){ res.innerHTML = '<div>Không tìm thấy sản phẩm.</div>'; return; }
-    var html = '<ul style="list-style:none;padding-left:0">';
+    var html = '<ul class="lookup-list">';
     for(var j=0;j<matches.length;j++){
         var p = matches[j];
         var pTypeKey = (p && p.type) ? p.type : (p && p.brand ? p.brand : '');
@@ -195,7 +177,7 @@ function tracuu(){
         var custom = (p.customProfit != null && p.customProfit !== undefined) ? p.customProfit : catProfit;
         var cost = Number(p.price||0);
         var sell = Math.round(cost * (1 + custom/100));
-        html += '<li style="margin-bottom:8px;padding:8px;border:1px solid #eee;border-radius:6px;"><strong>'+p.name+'</strong> — Giá vốn: '+cost.toLocaleString()+'đ • %Lợi: '+custom+'% • Giá bán: <b>'+sell.toLocaleString()+'đ</b></li>';
+        html += '<li class="lookup-item"><strong>'+p.name+'</strong> — Giá vốn: '+cost.toLocaleString()+'đ • %Lợi: '+custom+'% • Giá bán: <b>'+sell.toLocaleString()+'đ</b></li>';
     }
     html += '</ul>';
     res.innerHTML = html;
