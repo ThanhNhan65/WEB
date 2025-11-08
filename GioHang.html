@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/headerfooter.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@100;200;300;400&display=swap" rel="stylesheet">
+     
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h3 class="watch-title">WATCH</h3>
+            <div class="right-header">
+                <div class="login-register">
+                    <span id="auth-user" class="greeting"></span>
+                    <a id="btn-register" href="sign up.html">Đăng ký</a>
+                    <a id="btn-login" href="login.html">Đăng nhập</a>
+                    <a id="btn-logout" href="#!">Đăng xuất</a>
+                </div>
+                <div class="search-cart-group">
+                    <div class="search-bar">
+                        <div class="search">
+                            <input type="text" placeholder="Tìm kiếm...">
+                        </div>  
+                        <div class="search-icon">
+                            <a href="products.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        </div>
+                    </div>
+                    <div class="cart-icon">
+                        <a href="GioHang.html">   
+                            <i class="fa-solid fa-cart-shopping text-white"></i>
+                        </a>
+                    </div>
+                    <div class="user-menu" id="user-menu">
+                        <button type="button" class="user-menu-btn" id="account-btn" aria-haspopup="true" aria-expanded="false" title="Tài khoản">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <div class="user-dropdown" id="account-dropdown" role="menu">
+                            <ul>
+                                <li><a href="hosonguoidung.html" id="profile-link">Hồ sơ người dùng</a></li>
+                                <li><a href="lichsumuahang.html" id="orders-link">Lịch sử mua hàng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Body -->
+        <div class="body">
+            <div class="menu">
+                <a href="index.html">Trang chủ</a>
+                <a href="products.html">Sản phẩm</a>
+            </div>
+
+            <h1 class="cart-title">Giỏ hàng</h1>
+
+        <!-- Danh sách giỏ hàng -->
+            <div class="cart-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-body">
+                    </tbody>
+                </table>
+
+                <div class="cart-footer">
+                    <div id="cart-total" class="total-price"><b>Tổng tiền:</b> 0đ</div>
+                    <div class="cart-button">
+                        <button id="cont-buy" class="cont-buy">Tiếp tục mua hàng</button>
+                        <button id="checkout-btn" class="checkout">Thanh toán</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="title">
+                <h3>WATCH</h3>
+            </div>
+        
+            <div class="info-contact">
+                <div class="address">
+                    <h4>Địa chỉ</h4>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                </div>
+
+                <div class="contact">
+                    <h4>Liên hệ</h4>    
+                    <p>Email: watch1234@gmail.com</p>
+                    <p>Tel: +84 999 999 999</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="js/auth.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quản lý bán đồng hồ</title>
-  
   <link rel="stylesheet" href="css/headerfooter.css">
-  <link rel="stylesheet" href="css/chitietsp.css">
+  <link rel="stylesheet" href="css/hoso.css">
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Sansita:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -58,9 +58,9 @@
         </div>
 
 
+
         <!-- Body -->
-        <main class="body">
-            <!--Menu-->
+        <main class="body"> 
             <div class="navigation">
                 <ul>
                     <li><a href="index.html">Trang chủ</a></li>
@@ -68,38 +68,62 @@
                 </ul>
             </div>
 
-            <!--Content-->
-            <div class="name fade-up" id="product-name"></div> 
-            <div class="product-container fade-up">
-
-                <div class="img-border" id="product-image"></div>
-                
                 <div>
-                    <div class="info-position">
-                        <h2>Thông tin cơ bản</h2>
-                        <h2 class="h2"><hr></h2>
-                        <table id="product-info">
-                        </table> 
+                    <div class="title">Hồ sơ người dùng</div>
+                    <div class="profile-view-section">
+                        <table>
+                            <tr>
+                                <td>Tên đăng nhập</td>
+                                <td id="profile-name">—</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td id="profile-email">—</td>
+                            </tr>
+                            <tr>
+                                <td class="text">Số điện thoại</td>
+                                <td id="profile-phone">—</td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ</td>
+                                <td id="profile-address">—</td>
+                            </tr>
+                        </table>
                     </div>
-
-                    <div class="price">
-                        <div class="text1">Giá sản phẩm:</div>
-                        <div class="text2" id="product-price"></div>
-                    </div>
-
-                    <div class="display-button">
-                        <a href="#!" class="button button-left">
-                            <p class="text-button">Mua ngay</p>
-                        </a>
-                        <a href="#!" class="button button-right">
-                            <p class="text-button">Thêm vào giỏ hàng</p>
-                        </a>
+                    <div class="content profile-edit-section">
+                        <form id="profile-form" class="profile-form">
+                            <h3>Chỉnh sửa thông tin</h3>
+                            <div class="profile-form-fields">
+                                <label>
+                                    <span>Họ và tên</span>
+                                    <input id="input-name" type="text" placeholder="Nhập họ và tên">
+                                </label>
+                                <label>
+                                    <span>Email (không đổi)</span>
+                                    <input id="input-email" type="email" disabled>
+                                </label>
+                                <label>
+                                    <span>Số điện thoại</span>
+                                    <input id="input-phone" type="tel" placeholder="Nhập số điện thoại">
+                                </label>
+                                <label>
+                                    <span>Địa chỉ</span>
+                                    <input id="input-address" type="text" placeholder="Nhập địa chỉ">
+                                </label>
+                            </div>
+                            <div class="profile-form-actions">
+                                <button type="submit">Lưu thay đổi</button>
+                                <button type="button" id="btn-cancel-edit">Hủy</button>
+                                <span id="profile-save-msg">Đã lưu!</span>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="banner">
-                <img src="image/banner.png" class="banner-img">
-            </div>
+                <img src="image\banner.png" class="banner-img">
+           </div>
+            
         </main>
 
         <!-- Footer -->
@@ -122,11 +146,11 @@
                 <p>Tel: +84 999 999 999</p>
             </div>
         </div>
-    </div>
-<script src="js/auth.js"></script>
-<script src="js/products.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/product-detail.js"></script>
-<script src="js/search.js"></script>
+        </div>
 </body>
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/profile.js"></script>
 </html>

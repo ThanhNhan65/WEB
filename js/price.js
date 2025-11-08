@@ -1,256 +1,199 @@
-function hienthiquanlygiaban() {
-    anTatCaGiaoDien(); // ẩn tất cả phần khác
-    document.getElementById('pricing-manager').style.display = 'block';
+'use strict';
+const PRODUCTS_KEY = 'app_products';
+const PROFIT_KEY   = 'app_profit';
+
+function getAllProducts(){
+    var raw = localStorage.getItem(PRODUCTS_KEY);
+    if(!raw) return [];
+    return JSON.parse(raw);
 }
 
-
-
-
-
-
-
-function hienthiquanlygiaban() {
-    let a = document.getElementById('pricing-manager');
-    if (a.style.display === "none" || a.style.display === "")
-        a.style.display = "block";
-    else
-        a.style.display = "none";
+function saveProducts(list){
+    localStorage.setItem(PRODUCTS_KEY, JSON.stringify(list || []));
 }
 
-let brands = [
-    { name: "Casio", margin: 15 },
-    { name: "Citizen", margin: 18 },
-];
+function getProfitRates(){
+    var raw = localStorage.getItem(PROFIT_KEY);
+    if(!raw) return {};
+    return JSON.parse(raw);
+}
 
-let products = [
-    { id: 1, name: "Casio MTP-1374D", brand: "Casio", cost: 1200000, margin: 20 },
-    { id: 2, name: "Casio A168", brand: "Casio", cost: 900000, margin: 15 },
-    { id: 3, name: "Casio Edifice EFR-539", brand: "Casio", cost: 2600000, margin: 25 },
-    { id: 4, name: "Casio G-Shock GA-2100", brand: "Casio", cost: 3500000, margin: 30 },
-    { id: 5, name: "Casio Vintage B640", brand: "Casio", cost: 950000, margin: 18 },
-    { id: 6, name: "Casio Wave Ceptor WVA-M640", brand: "Casio", cost: 4800000, margin: 28 },
-
-    { id: 7, name: "Citizen BM7100", brand: "Citizen", cost: 3500000, margin: 25 },
-    { id: 8, name: "Citizen Eco-Drive AW1231", brand: "Citizen", cost: 4200000, margin: 28 },
-    { id: 9, name: "Citizen Promaster Diver", brand: "Citizen", cost: 5200000, margin: 35 },
-    { id: 10, name: "Citizen Chronograph AN8050", brand: "Citizen", cost: 3300000, margin: 22 },
-    { id: 11, name: "Citizen Mechanical NJ0100", brand: "Citizen", cost: 4600000, margin: 27 },
-    { id: 12, name: "Citizen Tsuyosa Automatic", brand: "Citizen", cost: 5600000, margin: 32 }
-];
-
-// --- Render bảng loại ---
-function renderCategoryTable() {
-    var tbody = document.getElementById("category-tbody");
-    tbody.innerHTML = ""; 
-
-    for (var i = 0; i < brands.length; i++) {
-        var b = brands[i];
-        var tr = document.createElement("tr");
-
-        var tdName = document.createElement("td");
-        tdName.textContent = b.name;
-
-        var tdMargin = document.createElement("td");
-        var input = document.createElement("input");
-        input.type = "number";
-        input.id = "margin-" + i;
-        input.value = b.margin;
-        input.min = 0;
-        input.max = 100;
-        tdMargin.appendChild(input);
-        tdMargin.appendChild(document.createTextNode("%"));
-
-        var tdButton = document.createElement("td");
-        var btn = document.createElement("button");
-        btn.textContent = "Lưu";
-        btn.onclick = (function(index){ 
-            return function() { saveBrandMargin(index); };
-        })(i);
-        tdButton.appendChild(btn);
-
-        tr.appendChild(tdName);
-        tr.appendChild(tdMargin);
-        tr.appendChild(tdButton);
-
-        tbody.appendChild(tr);
+function saveProfitRates(obj){
+    localStorage.setItem(PROFIT_KEY, JSON.stringify(obj || {}));
+}
+function syncProductsFromMain(){
+    var raw = localStorage.getItem(PRODUCTS_KEY);
+    if(!raw) return;
+    var products = JSON.parse(raw);
+    for(var i=0; i<products.length; i++){
+        products[i].price = Number(products[i].price) || 0;
     }
+    saveProducts(products);
 }
 
-// --- Lưu lợi nhuận cho Brand ---
-function saveBrandMargin(index) {
-    var input = document.getElementById("margin-" + index);
-    var newMargin = parseFloat(input.value);
+function initPriceManager(){
+    syncProductsFromMain();
+    renderCategoryPricing();
+    renderProductPricing();
+    showPricingTab('category');
+}
 
-    if (isNaN(newMargin) || newMargin < 0) {
-        alert("Tỷ lệ không hợp lệ!");
-        return;
+document.addEventListener('DOMContentLoaded', initPriceManager);
+
+window.addEventListener('storage', function(e){
+    if(e.key === PRODUCTS_KEY){
+        console.log('⚡ Dữ liệu sản phẩm thay đổi, cập nhật lại...');
+        syncProductsFromMain();
+        renderCategoryPricing();
+        renderProductPricing();
     }
+    if(e.key === 'watchTypes'){
+        renderCategoryPricing();
+        renderProductPricing();
+    }
+});
 
-    brands[index].margin = newMargin;
+document.addEventListener('watchTypesUpdated', function(){
+    renderCategoryPricing();
+    renderProductPricing();
+});
 
-    for (var i = 0; i < products.length; i++) {
-        if (products[i].brand.toLowerCase() === brands[index].name.toLowerCase()) {
-            products[i].margin = newMargin;
+function showPricingTab(tab){
+    var secs = document.querySelectorAll('.pricing-tab');
+    for(var i=0;i<secs.length;i++){
+        secs[i].classList.remove('active');
+    }
+    var active = document.getElementById('tab-'+tab);
+    if(active) active.classList.add('active');
+}
+
+function getWatchTypesLocal(){
+    var raw = localStorage.getItem('watchTypes');
+    if(!raw) return [];
+    return JSON.parse(raw);
+}
+
+function renderCategoryPricing(){
+    var list = getAllProducts();
+    var profit = getProfitRates();
+    var tbody = document.getElementById('category-tbody');
+    if(!tbody) return;
+
+    var watchTypes = getWatchTypesLocal();
+    var keys = [];
+    if(watchTypes && watchTypes.length > 0){
+        for(var wi=0; wi<watchTypes.length; wi++){
+            var wt = watchTypes[wi];
+            if(!wt || wt.hidden) continue;
+            if(wt.name) keys.push(wt.name);
         }
+    } else {
+        var typesMap = {};
+        for(var i=0;i<list.length;i++){
+            var p = list[i];
+            var key = (p && p.type) ? p.type : (p && p.brand ? p.brand : null);
+            if(key) typesMap[key] = true;
+        }
+        var tmp = Object.keys(typesMap);
+        for(var tI=0;tI<tmp.length;tI++) keys.push(tmp[tI]);
     }
 
-    localStorage.setItem("brandMargins", JSON.stringify(brands));
-    localStorage.setItem("productMargins", JSON.stringify(products));
-
-    renderCategoryTable();
-    renderProductList();
-    alert("Đã cập nhật lợi nhuận cho thương hiệu " + brands[index].name);
+    var html = '';
+    for(var k=0;k<keys.length;k++){
+        var t = keys[k];
+        var val = profit[t] || 0;
+        html += "\n        <tr>\n            <td>"+t+"</td>\n            <td><input type=\"number\" id=\"profit_"+t+"\" value=\""+val+"\" min=\"0\" class=\"price-input\"></td>\n            <td><button onclick=\"updateCategoryProfit('"+t+"')\">Lưu</button></td>\n        </tr>";
+    }
+    tbody.innerHTML = html;
 }
 
-// --- Render danh sách sản phẩm ---
-function renderProductList(list) {
-    if (!list) list = products;
-    var container = document.getElementById("product-list");
-    container.innerHTML = "";
+function updateCategoryProfit(type){
+    var profit = getProfitRates();
+    var input = document.getElementById('profit_'+type);
+    if(!input) return;
+    profit[type] = Number(input.value) || 0;
+    saveProfitRates(profit);
+    alert('Đã lưu tỷ lệ lợi nhuận cho loại ' + type);
+    renderProductPricing();
+}
 
-    for (var i = 0; i < list.length; i++) {
+function renderProductPricing(filterName, filterType){
+    var list = getAllProducts();
+    var profit = getProfitRates();
+    var container = document.getElementById('product-list-pricing');
+    if(!container) return;
+
+    filterName = (filterName||'').trim().toLowerCase();
+    filterType = filterType || '';
+
+    var html = '';
+    for(var i=0;i<list.length;i++){
         var p = list[i];
-        var sell = p.cost + (p.cost * p.margin / 100);
-
-        var div = document.createElement("div");
-        div.className = "product-item";
-
-        var colName = document.createElement("div");
-        colName.className = "col name";
-        colName.textContent = p.name;
-
-        var colCost = document.createElement("div");
-        colCost.className = "col cost";
-        colCost.textContent = p.cost.toLocaleString() + " đ";
-
-        var colMargin = document.createElement("div");
-        colMargin.className = "col margin";
-        var input = document.createElement("input");
-        input.type = "number";
-        input.id = "prod-" + i;
-        input.value = p.margin;
-        input.min = 0;
-        input.max = 100;
-        colMargin.appendChild(input);
-        colMargin.appendChild(document.createTextNode("%"));
-
-        var colSell = document.createElement("div");
-        colSell.className = "col sell";
-        colSell.textContent = sell.toLocaleString() + " đ";
-
-        var colAction = document.createElement("div");
-        colAction.className = "col action";
-        var btn = document.createElement("button");
-        btn.textContent = "Lưu";
-        (function(index){ 
-            btn.onclick = function() { saveProductMargin(index); };
-        })(i);
-        colAction.appendChild(btn);
-
-        div.appendChild(colName);
-        div.appendChild(colCost);
-        div.appendChild(colMargin);
-        div.appendChild(colSell);
-        div.appendChild(colAction);
-
-        container.appendChild(div);
+        if(!p) continue;
+        if(filterType){
+            var pType = (p && p.type) ? p.type : (p && p.brand ? p.brand : '');
+            if(pType !== filterType) continue;
+        }
+        if(filterName && !( (p.name||'').toLowerCase().indexOf(filterName) !== -1 )) continue;
+        var pTypeKey = (p && p.type) ? p.type : (p && p.brand ? p.brand : '');
+        var catProfit = profit[pTypeKey] || 0;
+        var custom = (p.customProfit != null && p.customProfit !== undefined) ? p.customProfit : catProfit;
+        var sell = Number(p.price || 0) * (1 + custom/100);
+        html += "\n        <div class=\"product-item\">\n            <div class=\"col\">"+p.name+"</div>\n            <div class=\"col\">"+Number(p.price||0).toLocaleString()+"đ</div>\n            <div class=\"col\"><input type=\"number\" id=\"custom_"+p.id+"\" value=\""+custom+"\" min=\"0\" class=\"price-input-small\"></div>\n            <div class=\"col\">"+sell.toLocaleString()+"đ</div>\n            <div class=\"col\"><button onclick=\"saveProductProfit('"+p.id+"')\">Lưu</button></div>\n        </div>";
     }
+    container.innerHTML = html;
 }
 
-// --- Lưu lợi nhuận cho sản phẩm ---
-function saveProductMargin(i) {
-    var input = document.getElementById("prod-" + i);
-    var newMargin = parseFloat(input.value);
-
-    if (isNaN(newMargin) || newMargin < 0) {
-        alert("Tỷ lệ không hợp lệ!");
-        return;
-    }
-
-    products[i].margin = newMargin;
-    localStorage.setItem("productMargins", JSON.stringify(products));
-    renderProductList();
-    alert("Đã cập nhật lợi nhuận cho sản phẩm " + products[i].name);
+function filterByName(){
+    var q = (document.getElementById('search-product')||{}).value || '';
+    var b = (document.getElementById('filter-type')||{}).value || '';
+    renderProductPricing(q, b);
 }
 
-// --- Tra cứu ---
-function tracuu() {
-    var key = document.getElementById("lookup-input").value.trim().toLowerCase();
-    var result = document.getElementById("lookup-result");
-    result.innerHTML = "";
+function filterProducts(){
+    filterByName();
+}
 
-    if (key === "") {
-        result.textContent = "Vui lòng nhập tên sản phẩm.";
-        return;
+function tracuu(){
+    var q = (document.getElementById('lookup-input')||{}).value || '';
+    var res = document.getElementById('lookup-result');
+    if(!res) return;
+    q = q.trim().toLowerCase();
+    if(!q){ res.innerHTML = '<div>Vui lòng nhập tên sản phẩm để tra cứu.</div>'; return; }
+    var list = getAllProducts();
+    var profit = getProfitRates();
+    var matches = [];
+    for(var i=0;i<list.length;i++){
+        var p = list[i];
+        if(!p) continue;
+        if((p.name||'').toLowerCase().indexOf(q) !== -1) matches.push(p);
     }
+    if(matches.length === 0){ res.innerHTML = '<div>Không tìm thấy sản phẩm.</div>'; return; }
+    var html = '<ul class="lookup-list">';
+    for(var j=0;j<matches.length;j++){
+        var p = matches[j];
+        var pTypeKey = (p && p.type) ? p.type : (p && p.brand ? p.brand : '');
+        var catProfit = profit[pTypeKey] || 0;
+        var custom = (p.customProfit != null && p.customProfit !== undefined) ? p.customProfit : catProfit;
+        var cost = Number(p.price||0);
+        var sell = Math.round(cost * (1 + custom/100));
+        html += '<li class="lookup-item"><strong>'+p.name+'</strong> — Giá vốn: '+cost.toLocaleString()+'đ • %Lợi: '+custom+'% • Giá bán: <b>'+sell.toLocaleString()+'đ</b></li>';
+    }
+    html += '</ul>';
+    res.innerHTML = html;
+}
 
-    var found = null;
-    for (var i = 0; i < products.length; i++) {
-        if (products[i].name.toLowerCase().indexOf(key) >= 0) {
-            found = products[i];
-            break;
+function saveProductProfit(id){
+    var list = getAllProducts();
+    for(var i=0; i<list.length; i++){
+        if(list[i].id === id){
+            var input = document.getElementById('custom_'+id);
+            var val = Number(input.value) || 0;
+            list[i].customProfit = val;
+            saveProducts(list);
+            alert('Đã cập nhật % lợi nhuận cho sản phẩm ' + list[i].name);
+            renderProductPricing();
+            return;
         }
     }
-
-    if (!found) {
-        result.textContent = "Không tìm thấy sản phẩm.";
-        return;
-    }
-
-    var sell = found.cost + found.cost * found.margin / 100;
-    result.innerHTML = "<b>Tên:</b> " + found.name +
-                       "<br><b>Giá vốn:</b> " + found.cost.toLocaleString() + " đ" +
-                       "<br><b>% Lợi nhuận:</b> " + found.margin + "%" +
-                       "<br><b>Giá bán:</b> " + sell.toLocaleString() + " đ";
 }
-
-// --- Lọc theo tên ---
-function filterByName() {
-    var keyword = document.getElementById("search-product").value.trim().toLowerCase();
-    var container = document.getElementById("product-list");
-    container.innerHTML = "";
-
-    var filtered = [];
-    for (var i = 0; i < products.length; i++) {
-        if (products[i].name.toLowerCase().indexOf(keyword) >= 0) {
-            filtered.push(products[i]);
-        }
-    }
-
-    if (filtered.length === 0) {
-        container.textContent = "Không tìm thấy sản phẩm.";
-        return;
-    }
-
-    renderProductList(filtered);
-}
-
-// --- Lọc theo brand ---
-function filterProducts() {
-    var select = document.getElementById("filter-brand");
-    var brand = select ? select.value : "";
-    var filtered = [];
-
-    for (var i = 0; i < products.length; i++) {
-        if (!brand || products[i].brand.toLowerCase() === brand.toLowerCase()) {
-            filtered.push(products[i]);
-        }
-    }
-
-    renderProductList(filtered);
-}
-
-// --- Onload ---
-window.onload = function () {
-    var b = localStorage.getItem("brandMargins");
-    var p = localStorage.getItem("productMargins");
-
-    if (b) brands = JSON.parse(b);
-    if (p) products = JSON.parse(p);
-
-    renderCategoryTable();
-    renderProductList();
-
-    var select = document.getElementById("filter-brand");
-    if (select) select.addEventListener("change", filterProducts);
-};

@@ -1,0 +1,22 @@
+.receipt-toolbar { 
+	display:flex; 
+	justify-content:space-between; 
+	align-items:center; 
+	margin-bottom:12px; 
+	gap:10px; 
+	flex-wrap:wrap; 
+}
+.receipt-toolbar .left-tools { 
+	display:flex; 
+	gap:8px; 
+	align-items:center; 
+}
+.receipt-toolbar .right-tools { 
+	color:#2c3e50; 
+}
+.receipt-filters { 
+	display:flex; 
+	gap:8px; 
+	align-items:center; 
+	flex-wrap:wrap; 
+}

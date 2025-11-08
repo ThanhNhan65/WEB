@@ -1,0 +1,35 @@
+.customer-toolbar{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	margin-bottom:12px;
+	gap:8px;
+}
+.customer-toolbar .left-tools{
+	display:flex; 
+	gap:8px
+}
+.btn.small{ 
+	padding:6px 10px; 
+	font-size:13px 
+}
+
+.status-badge{
+	display:inline-block;
+	padding:4px 8px;
+	border-radius:12px;
+	font-size:13px;
+	font-weight:600;
+}
+.status-badge.locked{ 
+	background: rgba(225,29,72,0.12); 
+	color: #e11d48; 
+	border:1px solid rgba(225,29,72,0.25); 
+}
+.status-badge.active{ 
+	background: rgba(22,163,74,0.08); 
+	color: #16a34a; 
+	border:1px solid rgba(22,163,74,0.15); 
+}
+#customer-tbody td { color: #111; }
+

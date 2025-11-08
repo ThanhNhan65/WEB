@@ -1,0 +1,180 @@
+/* ==== RESET CƠ BẢN ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--main-font);
+}
+
+body {
+  background: #f5f5f5;
+  color: #333;
+}
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+/* ==== FORM CHÍNH ==== */
+.checkout-form fieldset {
+  border: none;
+  margin-bottom: 35px;
+}
+
+.checkout-section legend {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+
+  
+}
+
+.radio-line input[type="radio"] {
+  transform: scale(1.2);
+}
+
+.payment-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.card-panel {
+  background: #ececec;
+  padding: 20px 25px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.card-form label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.card-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #fff;
+  outline: none;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.card-form input:focus {
+  border-color: #3cb371;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+.form-row-inline {
+  display: block;
+}
+
+.form-row-inline div {
+  margin-bottom: 15px;
+}
+
+.order-summary {
+  background: #fafafa;
+  padding: 20px 25px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.order-summary h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.order-items {
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.order-items li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 15px;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.order-items li:last-child {
+  border-bottom: none;
+}
+
+.order-divider {
+  height: 1px;
+  background: #ddd;
+  margin: 10px 0;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.submit-row {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.btn-success {
+  background: #3cb371;
+  color: #fff;
+}
+
+.btn-success:hover {
+  background: #2e8b57;
+}
+
