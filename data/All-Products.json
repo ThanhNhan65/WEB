@@ -1,0 +1,122 @@
+{
+  "products": [
+    {
+      "name": "CM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type": "Đồng hồ cơ",
+      "price": 329,
+      "old_price": 499,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "DM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type": "Đồng hồ pin",
+      "price": 359,
+      "old_price": 479,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    }, 
+    {
+      "name": "EM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type": "Đồng hồ pin",
+      "price": 399,
+      "old_price": 599,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "FM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type": "Đồng hồ thông minh",
+      "price": 429,
+      "old_price": 699,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "EM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type": "Đồng hồ thời trang",
+      "price": 459,
+      "old_price": 799,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "GM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type":"Đồng hồ cơ",
+      "price": 499,
+      "old_price": 899,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "HM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type":"Đồng hồ thông minh",
+      "price": 529,
+      "old_price": 999,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "IM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type":"Đồng hồ thời trang",
+      "price": 559,
+      "old_price": 1099,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "JM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type":"Đồng hồ thông minh",
+      "price": 559,
+      "old_price": 1099,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "KM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type":"Đồng hồ cơ",
+      "price": 559,
+      "old_price": 1099,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "LM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type":"Đồng hồ thời trang",
+      "price": 559,
+      "old_price": 1099,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "LM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type":"Đồng hồ cơ",
+      "price": 559,
+      "old_price": 1099,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    },
+    {
+      "name": "LM-S110PG-1A",
+      "brand": "G-SHOCK",
+      "type":"Đồng hồ pin",
+      "price": 559,
+      "old_price": 1099,
+      "image": "./image/best-seller.png",
+      "link": "chitietsanpham.html"
+    }
+  ]
+}
+

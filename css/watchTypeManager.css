@@ -1,0 +1,114 @@
+#watchtype-manager {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 850px;
+  margin: 40px auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #222;
+  transition: all 0.3s ease;
+}
+
+/* Tiêu đề */
+#watchtype-manager h2 {
+  text-align: center;
+  color: #d4a017; /* vàng ánh kim */
+  text-transform: uppercase;
+  font-size: 22px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Nút thêm loại */
+#watchtype-manager button {
+  background: linear-gradient(135deg, #d4a017, #f5c542);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease;
+  margin-bottom: 15px;
+}
+
+#watchtype-manager button:hover {
+  background: linear-gradient(135deg, #c39312, #e6b837);
+  transform: translateY(-1px);
+}
+
+/* Bảng loại sản phẩm */
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.category-table th,
+.category-table td {
+  padding: 12px;
+  border: 1px solid #f2f2f2;
+  text-align: center;
+  font-size: 15px;
+}
+
+.category-table th {
+  background-color: #fff7dc;
+  color: #b89012;
+  font-weight: 600;
+}
+
+.category-table tr:nth-child(even) {
+  background-color: #fffef7;
+}
+
+.category-table tr:hover {
+  background-color: #fff4ca;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Các nút trong bảng (sửa, xóa) */
+.category-table button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  margin: 0 3px;
+}
+
+.category-table .edit-btn {
+  background-color: #f5c542;
+  color: #fff;
+}
+
+.category-table .edit-btn:hover {
+  background-color: #d4a017;
+}
+
+.category-table .delete-btn {
+  background-color: #ff5c5c;
+  color: #fff;
+}
+
+.category-table .delete-btn:hover {
+  background-color: #e04545;
+}
+
+/* Scrollbar vàng nhẹ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4a017;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b89012;
+}
